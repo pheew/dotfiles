@@ -1,5 +1,5 @@
 # Global aliases
-alias ~="cd ~" # -> Home
+alias h="cd ~" # -> Home
 alias b='cd -' # -> Previous directory
 
 
