@@ -1,1 +1,1 @@
-. .bash/aliases
+. ~/.bash/aliases
