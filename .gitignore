@@ -1,3 +1,4 @@
 *
+!.gitignore
+!.bash/.gitignore
 !.bashrc
-!.bash/aliases

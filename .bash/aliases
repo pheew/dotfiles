@@ -1,0 +1,47 @@
+# Global aliases
+alias ~="cd ~" # -> Home
+alias b='cd -' # -> Previous directory
+
+
+# Reloads the bash configuration
+function reload_env {
+	source ~/.bashrc
+}
+alias r=reload_env
+
+# Generic way to edit files
+# In order of:
+# - TextMate
+# - Nano
+# - Notepad
+function generic_edit {
+	
+	if type -P mate &>/dev/null; then
+	    mate $1
+	elif type -P nano >/dev/null; then
+	    nano $1
+	elif type -P notepad >/dev/null; then
+		notepad $1
+	fi
+}
+alias e=generic_edit
+
+
+# Make it easier to add a new alias
+function new_alias {
+	if edit ~/bash/aliases; then
+		reload
+	fi
+}
+alias na=new_alias
+
+
+# Git aliases
+alias gst='git status'
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gb='git branch'
+alias gba='git branch -a'
