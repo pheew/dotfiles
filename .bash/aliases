@@ -2,19 +2,35 @@
 alias ~="cd ~" # -> Home
 alias b='cd -' # -> Previous directory
 
-alias l='ls -al'
 
-# Grep some text from an ls -al output
-function lookup {
-	ls -al $1 | grep $2
+# Generic list method
+#
+# list [location] [grep pattern]
+#
+# Both arguments are optional, location default to '.'.
+# When no grep pattern is given, the ouput of 'ls' will not be piped through 'grep'
+function list {
+	if [ $1 ] ; then
+		if [ $2 ] ; then
+			ls -al $1 | grep $2
+		elif [ -f $1 ] ; then
+			ls -al $1
+		else
+			ls -al . | grep $1
+		fi
+	else
+		ls -al .
+	fi
 }
-alias f='lookup'
+alias l='list'
+
 
 # Reloads the bash configuration
 function reload_env {
 	source ~/.bashrc
 }
 alias r=reload_env
+
 
 # Generic way to edit files
 # In order of:
@@ -36,18 +52,20 @@ alias e=generic_edit
 
 # Make it easier to add a new alias
 function new_alias {
-	if edit ~/bash/aliases; then
-		reload
+	if generic_edit ~/bash/aliases; then
+		reload_env
 	fi
 }
 alias na=new_alias
+
 
 #Top 10 commands
 function t10 {
 	history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -n | tail | sort -nr
 }
 
-###   Handy Extract Program
+
+# Generic extract function, determines extraction program from file extension
 function extract {
     if [ -f $1 ] ; then
         case $1 in
