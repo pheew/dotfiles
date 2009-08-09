@@ -2,6 +2,13 @@
 alias ~="cd ~" # -> Home
 alias b='cd -' # -> Previous directory
 
+alias l='ls -al'
+
+# Grep some text from an ls -al output
+function lookup {
+	ls -al $1 | grep $2
+}
+alias f='lookup'
 
 # Reloads the bash configuration
 function reload_env {
