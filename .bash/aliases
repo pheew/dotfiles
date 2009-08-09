@@ -35,13 +35,6 @@ function new_alias {
 }
 alias na=new_alias
 
+#Include git aliases
+source ~/.bash/git
 
-# Git aliases
-alias gst='git status'
-alias gl='git pull'
-alias gp='git push'
-alias gd='git diff'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gb='git branch'
-alias gba='git branch -a'
