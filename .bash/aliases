@@ -52,7 +52,7 @@ alias e=generic_edit
 
 # Make it easier to add a new alias
 function new_alias {
-	if generic_edit ~/bash/aliases; then
+	if generic_edit ~/.bash/aliases; then
 		reload_env
 	fi
 }

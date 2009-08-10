@@ -7,3 +7,14 @@ alias gc='git commit'
 alias gca='git commit -a'
 alias gb='git branch'
 alias gba='git branch -a'
+
+function git-tracking-branch {
+	git branch $2 --track $1/$2
+}
+alias gtb=git-tracking-branch
+
+function git-checkout-tracking-branch {
+    git-tracking-branch $*
+    git checkout $2
+}
+alias gctb=git-checkout-tracking-branch $*
