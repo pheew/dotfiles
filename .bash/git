@@ -7,6 +7,9 @@ alias gc='git commit'
 alias gca='git commit -a'
 alias gb='git branch'
 alias gba='git branch -a'
+alias gg='git gui &'
+alias gk='gitk &'
+alias gka='gitk --all &'
 
 function git-tracking-branch {
 	git branch $2 --track $1/$2
