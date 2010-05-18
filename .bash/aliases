@@ -41,6 +41,8 @@ function generic_edit {
 	
 	if type -P mate &>/dev/null; then
 	    mate $1
+	elif type -P gvim >/dev/null; then
+		gvim $1
 	elif type -P vim >/dev/null; then
 		vim $1
 	elif type -P nano >/dev/null; then
