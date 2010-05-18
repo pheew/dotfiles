@@ -2,3 +2,6 @@
 !.gitignore
 !.bash/.gitignore
 !.bashrc
+!.vimrc
+!.gvimrc
+!vimfiles/.gitignore
