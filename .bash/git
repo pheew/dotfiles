@@ -21,3 +21,10 @@ function git-checkout-tracking-branch {
     git checkout $2
 }
 alias gctb=git-checkout-tracking-branch $*
+
+function git-repo-clean {
+    git reset --hard HEAD
+    git clean -f -d
+    git gc
+}
+alias gclean=git-repo-clean
