@@ -13,7 +13,7 @@ function list {
 	if [ $1 ] ; then
 		if [ $2 ] ; then
 			ls -al $1 | grep $2
-		elif [ -f $1 ] ; then
+		elif [ -d $1 ] ; then
 			ls -al $1
 		else
 			ls -al . | grep $1
