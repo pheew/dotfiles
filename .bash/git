@@ -11,6 +11,11 @@ alias gg='git gui &'
 alias gk='gitk &'
 alias gka='gitk --all &'
 
+function git-checkout {
+	git checkout $1
+}
+alias gck=git-checkout
+
 function git-tracking-branch {
 	git branch $2 --track $1/$2
 }
