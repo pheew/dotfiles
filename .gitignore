@@ -4,6 +4,6 @@
 !.bashrc
 !.vimrc
 !.gvimrc
-!.vim/.gitignore
+!.vim/*
 !.powershell/*
 !.gitattributes
