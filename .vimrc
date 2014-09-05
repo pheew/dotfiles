@@ -1,44 +1,26 @@
 if has('vim_starting')
+
 	set nocompatible              " be iMproved, required
 
 	" Required
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
+
 endif
 
 call neobundle#begin(expand('~/vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'Valloric/YourCompleteMe', {
-	\ 'build': {
-	\ 	'unix': './install.sh',
-	\	'mac': './install.sh',
-	\	}
-	\}
-
+NeoBundle 'Valloric/YouCompleteMe', {'build': { 'unix': './install.sh', 'mac': './install.sh',	}}
 
 
 
 call neobundle#end()
 
 
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin('~/.vim/bundle/managed')
 
-"Plugin 'gmarik/Vundle.vim'
-"Plugin 'fatih/vim-go'
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'kien/ctrlp.vim'
-"" Plugin 'Shougo/unite.vim'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'https://bitbucket.org/sras/buffet'
-"call vundle#end()            " required
-"filetype plugin indent on    " required
-
-
-filetype plugin indent on
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -49,9 +31,9 @@ if has("gui_running")
     set guifont=Consolas:h11:cANSI
   endif
 endif
+syntax enable 
 set background=dark
 colorscheme solarized
-syntax on
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -80,3 +62,6 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+
+
+NeoBundleCheck
