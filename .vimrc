@@ -16,8 +16,11 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Valloric/YouCompleteMe', {'build': { 'unix': './install.sh', 'mac': './install.sh',	}}
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive' 
-
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'sandeepcr529/Buffet.vim'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'pangloss/vim-javascript'
 
 call neobundle#end()
 
@@ -34,7 +37,7 @@ if has("gui_running")
     set guifont=Consolas:h11:cANSI
   endif
 endif
-syntax enable 
+syntax enable
 set background=dark
 colorscheme solarized
 
@@ -45,14 +48,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " Don't open new buffer if file is already open
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
-                     \ exe "normal g'\"" | endif 
+                     \ exe "normal g'\"" | endif
 
 let mapleader=","
 
 " Show line numbers
 set number
 
-" Ctrl-P 
+" Ctrl-P
 nnoremap <Leader>p :CtrlP<cr>
 set wildignore+=*/node_modules/*
 
@@ -71,6 +74,7 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
 " airline
+set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_mode_map = {
 \ '__' : '-',
@@ -83,5 +87,34 @@ let g:airline_mode_map = {
 \ 's' : 'S',
 \ 'S' : 'S',
 \ }
+
+" Buffer buffer switching
+
+noremap <silent> <C-Tab> :Bufferlistsw<CR>
+noremap <silent> <C-S-Tab> :Bufferlistsw<CR>kk
+if !has('gui')
+	map <S-q> :Bufferlistsw<CR>
+endif
+
+augroup BuffetAdd
+	if !exists("g:BuffetAdded")
+		let g:BuffetAdded = 1
+		au BufWinEnter buflisttempbuffer* map <buffer> <Tab> <CR>
+		au BufWinEnter buflisttempbuffer* map <buffer> <C-Tab>   j
+		au BufWinEnter buflisttempbuffer* map <buffer> <C-S-Tab> k
+		" in console Vim we can't use <C-Tab> mappings (almost always),
+		" so this is temporary solution: <S-q>
+
+		if !has('gui')
+			au BufWinEnter buflisttempbuffer* map <buffer> <S-q> j
+			au BufWinEnter buflisttempbuffer* map <buffer> q <CR>
+		endif
+		" workaround Surround plugin issue in Buffet's window:
+		" disable \"ds\" mapping in the Buffet window (to make "d" work fast)
+		au BufEnter buflisttempbuffer* nunmap ds
+		au BufLeave buflisttempbuffer* nmap   ds <Plug>Dsurround
+
+   endif
+augroup END
 
 NeoBundleCheck
