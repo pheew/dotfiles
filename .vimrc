@@ -14,10 +14,13 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Valloric/YouCompleteMe', {'build': { 'unix': './install.sh', 'mac': './install.sh',	}}
-
+NeoBundle 'bling/vim-airline'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive' 
 
 
 call neobundle#end()
+
 
 
 
@@ -46,8 +49,12 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
 
 let mapleader=","
 
+" Show line numbers
+set number
+
 " Ctrl-P 
 nnoremap <Leader>p :CtrlP<cr>
+set wildignore+=*/node_modules/*
 
 " vim-go
 
@@ -63,5 +70,18 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_mode_map = {
+\ '__' : '-',
+\ 'n' : 'N',
+\ 'i' : 'I',
+\ 'R' : 'R',
+\ 'c' : 'C',
+\ 'v' : 'V',
+\ 'V' : 'V',
+\ 's' : 'S',
+\ 'S' : 'S',
+\ }
 
 NeoBundleCheck
