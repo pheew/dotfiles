@@ -1,18 +1,44 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if has('vim_starting')
+	set nocompatible              " be iMproved, required
+
+	" Required
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Valloric/YourCompleteMe', {
+	\ 'build': {
+	\ 	'unix': './install.sh',
+	\	'mac': './install.sh',
+	\	}
+	\}
+
+
+
+
+call neobundle#end()
+
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/bundle/managed')
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin('~/.vim/bundle/managed')
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'fatih/vim-go'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'gmarik/Vundle.vim'
+"Plugin 'fatih/vim-go'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'kien/ctrlp.vim'
+"" Plugin 'Shougo/unite.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'https://bitbucket.org/sras/buffet'
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 
-call vundle#end()            " required
-filetype plugin indent on    " required
 
+filetype plugin indent on
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -37,6 +63,9 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
                      \ exe "normal g'\"" | endif 
 
 let mapleader=","
+
+" Ctrl-P 
+nnoremap <Leader>p :CtrlP<cr>
 
 " vim-go
 
