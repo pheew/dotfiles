@@ -1,6 +1,7 @@
 [submodule ".powershell/git"]
 	path = .powershell/git
 	url = git@github.com:pheew/posh-git.git
-[submodule ".vim/bundle/Vundle.vim"]
-	path = .vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/vundle.vim.git
+
+[submodule ".vim/bundle/neobundle.vim"]
+	path = ./vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim

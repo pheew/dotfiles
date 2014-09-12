@@ -21,6 +21,7 @@ NeoBundle 'sandeepcr529/Buffet.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'bronson/vim-trailing-whitespace'
 
 call neobundle#end()
 
@@ -41,7 +42,7 @@ syntax enable
 set background=dark
 
 "let g:solarized_termcolors=256
-"let g:solarized_contrast='high'
+let g:solarized_contrast='high'
 colorscheme solarized
 
 autocmd StdinReadPre * let s:std_in=1
