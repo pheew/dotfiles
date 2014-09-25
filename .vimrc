@@ -26,7 +26,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 call neobundle#end()
 
 
-
+filetype plugin indent on
 
 
 if has("gui_running")
@@ -44,6 +44,8 @@ set background=dark
 "let g:solarized_termcolors=256
 let g:solarized_contrast='high'
 colorscheme solarized
+
+
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -63,15 +65,17 @@ set number
 nnoremap <Leader>p :CtrlP<cr>
 set wildignore+=*/node_modules/*
 
+" Buffer switching
+nnoremap <Leader>. :bp<cr>
+nnoremap <Leader>/ :bn<cr>
+nnoremap <Leader>, :b#<cr>
+
+
 " vim-go
-
 au FileType go nmap <Leader>i <Plug>(go-info)
-
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
