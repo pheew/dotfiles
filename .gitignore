@@ -8,3 +8,4 @@
 !.powershell/*
 !.gitattributes
 !.gitcolors
+!.dircolors/*
