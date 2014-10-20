@@ -12,14 +12,14 @@ alias b='cd -' # -> Previous directory
 function list {
 	if [ $1 ] ; then
 		if [ $2 ] ; then
-			ls -al $1 | grep $2
+			ls -al $1 --color=auto | grep $2
 		elif [ -d $1 ] ; then
-			ls -al $1
+			ls -al --color=auto $1
 		else
-			ls -al . | grep $1
+			ls -a --color=auto . | grep $1
 		fi
 	else
-		ls -al .
+		ls -al --color=auto .
 	fi
 }
 alias l='list'
