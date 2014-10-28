@@ -9,3 +9,5 @@
 !.gitattributes
 !.gitcolors
 !.dir_colors/*
+!.zshrc
+.oh-my-zsh/
