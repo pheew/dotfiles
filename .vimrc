@@ -17,17 +17,17 @@ NeoBundle 'Valloric/YouCompleteMe', {'build': { 'unix': './install.sh', 'mac': '
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'sandeepcr529/Buffet.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'tpope/vim-surround'
+
 
 call neobundle#end()
 
 
 filetype plugin indent on
-
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -113,35 +113,6 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
-
-" Buffer buffer switching
-
-noremap <silent> <C-Tab> :Bufferlistsw<CR>
-noremap <silent> <C-S-Tab> :Bufferlistsw<CR>kk
-if !has('gui')
-	map <S-q> :Bufferlistsw<CR>
-endif
-
-augroup BuffetAdd
-	if !exists("g:BuffetAdded")
-		let g:BuffetAdded = 1
-		au BufWinEnter buflisttempbuffer* map <buffer> <Tab> <CR>
-		au BufWinEnter buflisttempbuffer* map <buffer> <C-Tab>   j
-		au BufWinEnter buflisttempbuffer* map <buffer> <C-S-Tab> k
-		" in console Vim we can't use <C-Tab> mappings (almost always),
-		" so this is temporary solution: <S-q>
-
-		if !has('gui')
-			au BufWinEnter buflisttempbuffer* map <buffer> <S-q> j
-			au BufWinEnter buflisttempbuffer* map <buffer> q <CR>
-		endif
-		" workaround Surround plugin issue in Buffet's window:
-		" disable \"ds\" mapping in the Buffet window (to make "d" work fast)
-		au BufEnter buflisttempbuffer* nunmap ds
-		au BufLeave buflisttempbuffer* nmap   ds <Plug>Dsurround
-
-   endif
-augroup END
 
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
