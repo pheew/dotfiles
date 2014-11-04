@@ -50,8 +50,8 @@ plugins=(gitfast yum systemd bower sudo)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/niek/.local/bin:/home/niek/bin"
+export GOPATH=$HOME/go
+export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/niek/.local/bin:/home/niek/bin:$GOPATH/bin:/usr/local/go/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
