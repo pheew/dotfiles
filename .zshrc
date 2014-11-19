@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/niek/.local/bin:/home/niek/bin"
+export PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/niek/.local/bin:/home/niek/bin:/usr/local/go/bin:/home/niek/go/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
