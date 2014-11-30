@@ -81,3 +81,6 @@ export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export EDITOR=vim
+
+alias grep="/usr/bin/grep $GREP_OPTIONS"
+unset GREP_OPTIONS
