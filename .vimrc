@@ -118,3 +118,6 @@ set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
 
 NeoBundleCheck
+
+
+let $PYTHONPATH='/usr/lib/python3.4/site-packages'
