@@ -22,6 +22,7 @@ NeoBundle 'mxw/vim-jsx'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'scrooloose/nerdcommenter'
 
 
 call neobundle#end()
