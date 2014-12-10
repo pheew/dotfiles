@@ -31,6 +31,9 @@ call neobundle#end()
 filetype plugin indent on
 
 if has("gui_running")
+
+  set guioptions-=m
+  set guioptions-=T
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
