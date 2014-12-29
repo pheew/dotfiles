@@ -23,6 +23,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/nerdcommenter'
+" NeoBundle 'SirVer/ultisnips'
 
 
 call neobundle#end()
@@ -120,6 +121,9 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
+" Remove <tab> mapping from YouCompleteMe to enable ultisnip
+" let g:ycm_key_list_select_completion=[]
+" let g:ycm_key_list_previous_completion=[]
 
 NeoBundleCheck
 
