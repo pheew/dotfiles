@@ -47,11 +47,11 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast systemd bower sudo)
 
-if which yum 1>/dev/null
+if which yum > /dev/null 2>&1
 then
 	pluings+=(yum)
 fi
-if which pacman 1>/dev/null
+if which pacman > /dev/null 2>&1
 then
 	plugins+=(archlinux)
 fi
