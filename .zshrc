@@ -45,7 +45,16 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast archlinux yum systemd bower sudo)
+plugins=(gitfast systemd bower sudo)
+
+if which yum 1>/dev/null
+then
+	pluings+=(yum)
+fi
+if which pacman 1>/dev/null
+then
+	plugins+=(archlinux)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
