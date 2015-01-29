@@ -49,7 +49,7 @@ plugins=(gitfast systemd bower sudo)
 
 if command -v yum > /dev/null 2>&1
 then
-	pluings+=(yum)
+	plugins+=(yum)
 fi
 if command -v pacman >/dev/null 2>&1
 then
