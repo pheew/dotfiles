@@ -99,3 +99,5 @@ if command -v htop > /dev/null 2>&1
 then
 	alias top=htop
 fi
+
+unsetopt autocd
