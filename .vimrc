@@ -63,6 +63,9 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
 
 let mapleader=","
 
+" FixWhitespace mapping
+nnoremap <Leader>w :FixWhitespace<cr>
+
 " Show line numbers
 set number
 
