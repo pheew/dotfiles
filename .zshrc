@@ -26,7 +26,7 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -47,11 +47,11 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast systemd bower sudo)
 
-if which yum > /dev/null 2>&1
+if command -v yum > /dev/null 2>&1
 then
-	pluings+=(yum)
+	plugins+=(yum)
 fi
-if which pacman > /dev/null 2>&1
+if command -v pacman >/dev/null 2>&1
 then
 	plugins+=(archlinux)
 fi
@@ -94,3 +94,11 @@ export EDITOR=vim
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 unset GREP_OPTIONS
 alias gg="git gui"
+
+
+if command -v htop > /dev/null 2>&1
+then
+	alias top=htop
+fi
+
+unsetopt autocd
