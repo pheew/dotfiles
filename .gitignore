@@ -12,3 +12,4 @@
 !.zshrc
 .oh-my-zsh/
 !.yaourtrc
+!.config/awesome/*
