@@ -23,6 +23,8 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-lua-ftplugin'
 " NeoBundle 'SirVer/ultisnips'
 
 
