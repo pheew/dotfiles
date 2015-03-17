@@ -14,7 +14,7 @@ end
 function autorun.run()
 	autorun.run_once("urxvtd")
 	autorun.run_once("unclutter")
-	autorun.run_once("compton -GCb")
+	autorun.run_once("compton --config ~/.config/compton.conf -GCb")
 end
 
 return autorun
