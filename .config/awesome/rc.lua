@@ -443,8 +443,9 @@ for i = 1, 9 do
                      end
                   end),
 		awful.key({}, "XF86Display", function()
-			run_once("./dual_screen.sh")
-				--awful.util.spawn_with_shell("./dualscreen.sh")
+			local command = os.getenv("HOME") .. "/.config/awesome/./dualscreen.sh"
+
+			awful.util.spawn_with_shell(command)
 		end),
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()

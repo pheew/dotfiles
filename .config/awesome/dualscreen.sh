@@ -4,9 +4,13 @@
 
 case $1 in
 "l")
-  position="--left-of";;
+	position="--left-of";;
+"2")
+	position="--above";;
+"3")
+	position="--right-of";;
 *)
-  position="--right-of";;
+	position="--below";;
 esac
 if [ `xrandr | grep -c ' connected '` -eq 2 ]; then # dual-monitor
     echo -n "Dual screen: "
@@ -22,4 +26,3 @@ else
     echo "Single screen: LVDS1"
 xrandr --output LVDS1 --auto --primary --output VGA1 --off --output HDMI1 --off
 fi
-
