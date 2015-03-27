@@ -94,7 +94,8 @@ export EDITOR=vim
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 unset GREP_OPTIONS
 alias gg="git gui"
-
+alias jrn-unit="sudo journalctl -xe -f -u "
+alias jrn-follow="sudo journalctl -xe -f"
 
 if command -v htop > /dev/null 2>&1
 then
