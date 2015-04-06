@@ -51,6 +51,11 @@ if command -v yum > /dev/null 2>&1
 then
 	plugins+=(yum)
 fi
+if command -v tmux > /dev/null 2>&1
+then
+	ZSH_TMUX_AUTOSTART=true
+	plugins+=(tmux)
+fi
 if command -v pacman >/dev/null 2>&1
 then
 	plugins+=(archlinux)
