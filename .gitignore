@@ -11,5 +11,6 @@
 !.dir_colors/*
 !.zshrc
 .oh-my-zsh/
+!.tmux.conf
 !.yaourtrc
 !.config/awesome/*
