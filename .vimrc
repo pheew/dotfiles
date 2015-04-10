@@ -46,7 +46,7 @@ if has("gui_running")
   endif
 endif
 syntax enable
-set background=dark
+"set background=dark
 
 "let g:solarized_termcolors=256
 let g:solarized_contrast='high'
