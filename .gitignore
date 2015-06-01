@@ -14,3 +14,4 @@
 !.tmux.conf
 !.yaourtrc
 !.config/awesome/*
+!.tmux/plugins/**
