@@ -72,7 +72,7 @@ nnoremap <Leader>w :FixWhitespace<cr>
 set number
 
 " Ctrl-P
-nnoremap <Leader>p :CtrlP<cr>
+nnoremap <Leader>o :CtrlP<cr>
 set wildignore+=*/node_modules/*
 
 " Buffer switching
@@ -138,3 +138,11 @@ NeoBundleCheck
 
 
 let $PYTHONPATH='/usr/lib/python3.4/site-packages'
+
+" leader yank / paste mappings
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
