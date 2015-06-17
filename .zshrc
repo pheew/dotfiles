@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast systemd bower sudo)
+plugins=(gitfast systemd bower sudo common-aliases golang)
 
 if command -v yum > /dev/null 2>&1
 then
@@ -70,7 +70,10 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export GOPATH=$HOME/go
-export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin:$GOPATH/bin:/usr/local/go/bin
+
+export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
+export PATH=$PATH:./node_modules/.bin # add nodejs path
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -102,7 +105,8 @@ export EDITOR=vim
 
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 unset GREP_OPTIONS
-alias gg="git gui"
+
+#alias gg="git gui"
 
 alias jrn-unit="sudo journalctl -xe -f -u "
 alias jrn-follow="sudo journalctl -xe -f"
