@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast systemd bower sudo common-aliases golang)
+plugins=(gitfast systemd bower sudo common-aliases golang zsh_reload)
 
 if command -v yum > /dev/null 2>&1
 then
