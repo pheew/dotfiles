@@ -71,7 +71,7 @@ source $ZSH/oh-my-zsh.sh
 
 export GOPATH=$HOME/go
 
-export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
+export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
 export PATH=$PATH:./node_modules/.bin # add nodejs path
 
@@ -103,8 +103,8 @@ export PATH=$PATH:./node_modules/.bin # add nodejs path
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export EDITOR=vim
 
-alias grep="/usr/bin/grep $GREP_OPTIONS"
-unset GREP_OPTIONS
+#alias grep="$(which grep) $GREP_OPTIONS"
+#unset GREP_OPTIONS
 
 #alias gg="git gui"
 
