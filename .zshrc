@@ -60,10 +60,16 @@ then
 
 	plugins+=(tmux)
 fi
+
 if command -v pacman >/dev/null 2>&1
 then
 	plugins+=(archlinux)
 fi
+if command -v apt-get >/dev/null 2>&1
+then
+	plugins+=(debian)
+fi
+
 
 source $ZSH/oh-my-zsh.sh
 
