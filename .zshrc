@@ -124,3 +124,5 @@ then
 fi
 
 unsetopt autocd
+
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
