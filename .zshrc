@@ -51,6 +51,12 @@ if command -v yum > /dev/null 2>&1
 then
 	plugins+=(yum)
 fi
+if command -v docker > /dev/null 2>&1
+then
+	plugins+=(docker)
+fi
+
+
 if command -v tmux > /dev/null 2>&1
 then
 	if [ ${SSH_CONNECTION+1} ];
