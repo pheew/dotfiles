@@ -82,6 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export GOPATH=$HOME/go
+export GO15VENDOREXPERIMENT=1
 
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
