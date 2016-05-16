@@ -124,6 +124,7 @@ export EDITOR=vim
 alias jrn-unit="sudo journalctl -xe -f -u "
 alias jrn-follow="sudo journalctl -xe -f"
 alias jrn-fgrep="sudo journalctl -xe -f | grep"
+alias sc-failed="systemctl --failed"
 
 if command -v htop > /dev/null 2>&1
 then
