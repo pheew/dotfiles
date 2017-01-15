@@ -132,6 +132,6 @@ then
 fi
 
 unsetopt autocd
-unalias gvt
+#unalias gvt
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
