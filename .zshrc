@@ -76,6 +76,11 @@ then
 	plugins+=(debian)
 fi
 
+if command -v brew >/dev/null 2>&1
+then
+	plugins+=(brew)
+fi
+
 
 source $ZSH/oh-my-zsh.sh
 
