@@ -15,3 +15,4 @@
 !.yaourtrc
 !.config/awesome/*
 !.tmux/plugins/**
+!.custom-zsh/**

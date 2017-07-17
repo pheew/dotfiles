@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="lambda"
+ZSH_THEME="lambda-custom"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -39,13 +39,13 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.custom-zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast systemd bower sudo common-aliases golang zsh_reload)
+plugins=(gitfast systemd bower sudo common-aliases golang zsh_reload yarn)
 
 if command -v yum > /dev/null 2>&1
 then
@@ -140,3 +140,4 @@ unsetopt autocd
 #unalias gvt
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+eval $(/usr/libexec/path_helper -s)
