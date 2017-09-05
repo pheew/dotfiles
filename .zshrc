@@ -91,7 +91,7 @@ export GO15VENDOREXPERIMENT=1
 
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
-export PATH=$PATH:./node_modules/.bin # add nodejs path
+export PATH=$PATH:./node_modules/.bin:~/.yarn/bin # add nodejs path
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
