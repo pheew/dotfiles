@@ -91,7 +91,13 @@ export GO15VENDOREXPERIMENT=1
 
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
-export PATH=$PATH:./node_modules/.bin:~/.yarn/bin # add nodejs path
+export PATH=$PATH:~/.yarn/bin:./node_modules/.bin # add nodejs path
+
+if [ -f /usr/local/opt/nvm/nvm.sh ]
+then
+	export NVM_DIR="$HOME/.nvm"
+	. "/usr/local/opt/nvm/nvm.sh"
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -120,7 +126,10 @@ export PATH=$PATH:./node_modules/.bin:~/.yarn/bin # add nodejs path
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export EDITOR=vim
-
+if command -v nvim > /dev/null 2>&1
+then
+	alias vim=nvim
+fi
 #alias grep="$(which grep) $GREP_OPTIONS"
 #unset GREP_OPTIONS
 unalias gg
