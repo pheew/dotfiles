@@ -53,6 +53,7 @@ then
 fi
 if command -v docker > /dev/null 2>&1
 then
+	alias dgc="docker run --rm -e FORCE_IMAGE_REMOVAL=1 -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc"
 	plugins+=(docker)
 fi
 
