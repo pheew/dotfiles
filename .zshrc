@@ -98,6 +98,7 @@ if [ -f /usr/local/opt/nvm/nvm.sh ]
 then
 	export NVM_DIR="$HOME/.nvm"
 	. "/usr/local/opt/nvm/nvm.sh"
+	plugins+=(nvm)
 fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
