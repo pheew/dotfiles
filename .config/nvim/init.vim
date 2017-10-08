@@ -23,5 +23,3 @@ set number
 
 " Ignores for Ctrl-P
 set wildignore+=*/node_modules/*
-
-
