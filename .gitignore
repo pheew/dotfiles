@@ -16,3 +16,4 @@
 !.custom-zsh/
 .config/
 !.config/nvim/*
+!.ideavimrc
