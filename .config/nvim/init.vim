@@ -17,7 +17,6 @@ call plug#end()
 
 " Syntax highlight / theme 
 syntax enable
-set termguicolors
 set background=light
 colorscheme solarized
 set number
