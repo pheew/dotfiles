@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'tpope/vim-surround'
+Plug 'valloric/youcompleteme'
 
 " Languages
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }

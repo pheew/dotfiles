@@ -2,7 +2,6 @@
 !.gitignore
 !.bash/.gitignore
 !.bashrc
-!.vim/
 !.powershell/
 !.gitattributes
 !.gitcolors
