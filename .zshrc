@@ -151,4 +151,6 @@ unsetopt autocd
 #unalias gvt
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-eval $(/usr/libexec/path_helper -s)
+if [ -x /usr/libexec/path_helper ]; then
+	eval $(/usr/libexec/path_helper -s)
+fi
