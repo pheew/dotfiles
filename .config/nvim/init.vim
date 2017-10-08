@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
-Plug 'altercation/vim-colors-solarized'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'tpope/vim-surround'
 
 " Languages
@@ -17,6 +17,7 @@ call plug#end()
 
 " Syntax highlight / theme 
 syntax enable
+set termguicolors
 set background=light
 colorscheme solarized
 set number
