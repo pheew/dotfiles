@@ -60,10 +60,11 @@ fi
 
 if command -v tmux > /dev/null 2>&1
 then
-	if [ ${SSH_CONNECTION+1} ];
-	then
-		ZSH_TMUX_AUTOSTART=true
-	fi
+
+	ZSH_TMUX_AUTOSTART=true
+#	if [ ${SSH_CONNECTION+1} ];
+#	then
+#	fi
 
 	plugins+=(tmux)
 fi
