@@ -10,8 +10,7 @@ Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 
 " Languages
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'ekalinin/dockerfile.vim'
+Plug 'sheerun/vim-polyglot'
 
 " Initialize plugin system
 call plug#end()
