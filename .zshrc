@@ -98,6 +98,7 @@ export PATH=$PATH:~/.yarn/bin:./node_modules/.bin # add nodejs path
 if [ -f /usr/local/opt/nvm/nvm.sh ]
 then
 	export NVM_DIR="$HOME/.nvm"
+	export NVM_SYMLINK_CURRENT="true"
 	. "/usr/local/opt/nvm/nvm.sh"
 	plugins+=(nvm)
 fi
