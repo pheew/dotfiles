@@ -45,7 +45,7 @@ ZSH_CUSTOM=$HOME/.custom-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast systemd bower sudo common-aliases golang zsh_reload yarn)
+plugins=(gitfast systemd bower sudo common-aliases golang zsh_reload yarn npm)
 
 if command -v yum > /dev/null 2>&1
 then
