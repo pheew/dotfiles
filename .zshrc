@@ -93,7 +93,7 @@ export GO15VENDOREXPERIMENT=1
 
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
-export PATH=$PATH:~/.yarn/bin:./node_modules/.bin # add nodejs path
+export PATH=./node_modules/.bin:~/.yarn/bin:$PATH # add nodejs path
 
 if [ -f /usr/local/opt/nvm/nvm.sh ]
 then
@@ -101,6 +101,8 @@ then
 	export NVM_SYMLINK_CURRENT="true"
 	. "/usr/local/opt/nvm/nvm.sh"
 	plugins+=(nvm)
+
+	export PATH="~/.nvm/current/bin:$PATH"
 fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
