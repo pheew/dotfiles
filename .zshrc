@@ -45,7 +45,7 @@ ZSH_CUSTOM=$HOME/.custom-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast systemd bower sudo common-aliases golang zsh_reload yarn npm vi-mode)
+plugins=(gitfast systemd systemd-custom bower sudo common-aliases golang zsh_reload yarn npm vi-mode)
 
 if command -v yum > /dev/null 2>&1
 then
@@ -123,28 +123,14 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 export EDITOR=vim
 if command -v nvim > /dev/null 2>&1
 then
 	alias vim=nvim
 fi
-#alias grep="$(which grep) $GREP_OPTIONS"
-#unset GREP_OPTIONS
+
 unalias gg
 alias gg="git gui &"
-
-alias jrn-unit="sudo journalctl -xe -f -u "
-alias jrn-follow="sudo journalctl -xe -f"
-alias jrn-fgrep="sudo journalctl -xe -f | grep"
-alias sc-failed="systemctl --failed"
 
 if command -v htop > /dev/null 2>&1
 then
