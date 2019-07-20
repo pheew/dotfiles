@@ -12,7 +12,7 @@
 !.yaourtrc
 !.config/awesome/
 !.tmux/plugins/
-!.custom-zsh/
+!.custom-zsh/**
 .config/
 !.config/nvim/*
 !.ideavimrc
