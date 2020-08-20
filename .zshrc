@@ -45,7 +45,7 @@ ZSH_CUSTOM=$HOME/.custom-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast git systemd systemd-custom bower sudo common-aliases golang zsh_reload yarn npm vi-mode)
+plugins=(gitfast git systemd systemd-custom bower sudo common-aliases golang zsh_reload yarn npm vi-mode history-substring-search)
 
 if command -v yum > /dev/null 2>&1
 then
@@ -144,3 +144,5 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 if [ -x /usr/libexec/path_helper ]; then
 	eval $(/usr/libexec/path_helper -s)
 fi
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down

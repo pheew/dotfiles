@@ -22,4 +22,5 @@ colorscheme solarized
 set number
 
 " Ignores for Ctrl-P
-set wildignore+=*/node_modules/*
+set wildignore+=**/node_modules/*
+set wildignore+=**/dist/*
