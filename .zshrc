@@ -95,11 +95,11 @@ export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
 export PATH=./node_modules/.bin:~/.yarn/bin:$PATH # add nodejs path
 
-if [ -f /usr/local/opt/nvm/nvm.sh ]
+if [ -f ~/.nvm/nvm.sh ]
 then
-	export NVM_DIR="$HOME/.nvm"
+	export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 	export NVM_SYMLINK_CURRENT="true"
-	. "/usr/local/opt/nvm/nvm.sh"
 	plugins+=(nvm)
 
 	export PATH="~/.nvm/current/bin:$PATH"
