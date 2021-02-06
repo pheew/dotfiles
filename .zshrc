@@ -81,6 +81,10 @@ fi
 if command -v brew >/dev/null 2>&1
 then
 	plugins+=(brew)
+        local brew_prefix=`brew config | awk -F ': ' '/HOMEBREW_PREFIX/ {print $2}'`
+	export PATH="${brew_prefix}/bin:${brew_prefix}/sbin${PATH+:$PATH}:"
+	export MANPATH="${brew_prefix}/share/man${MANPATH+:$MANPATH}:"
+	export INFOPATH="${brew_prefix}/share/info:${INFOPATH:-}"
 fi
 
 
@@ -91,8 +95,10 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=$HOME/go
 export GO15VENDOREXPERIMENT=1
 
-export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
+export PATH="${PATH}:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
+
+# Node bin take precedence over global paths 
 export PATH=./node_modules/.bin:~/.yarn/bin:$PATH # add nodejs path
 
 if [ -f ~/.nvm/nvm.sh ]
