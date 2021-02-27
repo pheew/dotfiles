@@ -78,14 +78,22 @@ then
 	plugins+=(debian)
 fi
 
-if command -v brew >/dev/null 2>&1
-then
-	plugins+=(brew)
-        local brew_prefix=`brew config | awk -F ': ' '/HOMEBREW_PREFIX/ {print $2}'`
-	export PATH="${brew_prefix}/bin:${brew_prefix}/sbin${PATH+:$PATH}:"
-	export MANPATH="${brew_prefix}/share/man${MANPATH+:$MANPATH}:"
-	export INFOPATH="${brew_prefix}/share/info:${INFOPATH:-}"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	if [[ `arch` == "arm64" ]]; then
+		local brew_bin="/opt/homebrew/bin/brew"
+	else
+		local brew_bin="/usr/local/homebrew/bin/brew"
+	fi
+	if stat $brew_bin  >/dev/null 2>&1
+	then
+		plugins+=(brew)
+	        local brew_prefix=`$brew_bin config | awk -F ': ' '/HOMEBREW_PREFIX/ {print $2}'`
+		export PATH="${brew_prefix}/bin:${brew_prefix}/sbin${PATH+:$PATH}:"
+		export MANPATH="${brew_prefix}/share/man${MANPATH+:$MANPATH}:"
+		export INFOPATH="${brew_prefix}/share/info:${INFOPATH:-}"
+	fi
 fi
+
 
 
 source $ZSH/oh-my-zsh.sh
