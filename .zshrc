@@ -91,6 +91,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 		export PATH="${brew_prefix}/bin:${brew_prefix}/sbin${PATH+:$PATH}:"
 		export MANPATH="${brew_prefix}/share/man${MANPATH+:$MANPATH}:"
 		export INFOPATH="${brew_prefix}/share/info:${INFOPATH:-}"
+
+		FPATH="$brew_prefix/share/zsh/site-functions:$FPATH"
+
+		autoload -Uz compinit
+		compinit
 	fi
 fi
 
