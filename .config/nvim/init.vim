@@ -8,6 +8,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 " Plug 'valloric/youcompleteme'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -200,3 +201,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " NERDTreeToggle
 map <C-n> :NERDTreeToggle<CR>
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" buffer control using CtrlP plugin
+nnoremap ; :CtrlPBuffer<CR>
