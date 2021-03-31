@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 " Plug 'valloric/youcompleteme'
@@ -22,9 +22,11 @@ Plug 'prettier/vim-prettier', {
 call plug#end()
 
 " Syntax highlight / theme 
+set termguicolors
 syntax enable
 set background=light
-colorscheme solarized
+autocmd vimenter * ++nested colorscheme solarized8
+
 set number
 
 " Ignores for Ctrl-P
