@@ -9,14 +9,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-" Plug 'valloric/youcompleteme'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'branch': 'release/0.x'
-  \ }
-
-" Languages
-" Plug 'sheerun/vim-polyglot'
 
 " Initialize plugin system
 call plug#end()
@@ -35,6 +27,8 @@ set wildignore+=**/dist/*
 
 
 """ coc-vim settings
+let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json']
+
 " TextEdit might fail if hidden is not set.
 set hidden
 
