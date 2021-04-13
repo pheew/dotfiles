@@ -28,7 +28,7 @@ set wildignore+=**/dist/*
 
 
 """ coc-vim settings
-let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json']
+let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json', 'coc-git']
 
 " TextEdit might fail if hidden is not set.
 set hidden
