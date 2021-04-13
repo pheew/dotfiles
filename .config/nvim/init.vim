@@ -20,6 +20,7 @@ set background=light
 autocmd vimenter * ++nested colorscheme solarized8
 
 set number
+set relativenumber
 
 " Ignores for Ctrl-P
 set wildignore+=**/node_modules/*
