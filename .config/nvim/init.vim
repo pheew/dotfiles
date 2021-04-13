@@ -196,6 +196,9 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" disable coc in git commits
+autocmd BufRead,BufNewFile COMMIT_EDITMSG let b:coc_enabled=0
+
 " NERDTreeToggle
 map <C-n> :NERDTreeToggle<CR>
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
