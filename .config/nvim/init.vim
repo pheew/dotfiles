@@ -5,10 +5,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -22,10 +23,27 @@ autocmd vimenter * ++nested colorscheme solarized8
 set number
 set relativenumber
 
-" Ignores for Ctrl-P
+" fzf setup
 set wildignore+=**/node_modules/*
 set wildignore+=**/dist/*
 
+
+nnoremap <C-;> :GFiles<CR>
+nnoremap ; :Files<CR>
+if executable('rg')
+	let $FZF_DEFAULT_COMMAND = 'rg --glob="!.git/*" --hidden -l ""'
+endif
+
+" ripgrep
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 """ coc-vim settings
 let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json', 'coc-git']
@@ -203,5 +221,3 @@ autocmd BufRead,BufNewFile COMMIT_EDITMSG let b:coc_enabled=0
 map <C-n> :NERDTreeToggle<CR>
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" buffer control using CtrlP plugin
-nnoremap ; :CtrlPBuffer<CR>
