@@ -47,37 +47,6 @@ ZSH_CUSTOM=$HOME/.custom-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast git git-custom systemd systemd-custom bower sudo common-aliases golang zsh_reload yarn npm vi-mode history-substring-search nextjs-custom)
 
-if command -v yum > /dev/null 2>&1
-then
-	plugins+=(yum)
-fi
-if command -v docker > /dev/null 2>&1
-then
-	alias dgc="docker run --rm -e FORCE_IMAGE_REMOVAL=1 -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc"
-	plugins+=(docker)
-fi
-
-
-if command -v tmux > /dev/null 2>&1
-then
-
-	ZSH_TMUX_AUTOSTART=true
-#	if [ ${SSH_CONNECTION+1} ];
-#	then
-#	fi
-
-	plugins+=(tmux)
-fi
-
-if command -v pacman >/dev/null 2>&1
-then
-	plugins+=(archlinux)
-fi
-if command -v apt-get >/dev/null 2>&1
-then
-	plugins+=(debian)
-fi
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	if [[ `arch` == "arm64" ]]; then
 		local brew_bin="/opt/homebrew/bin/brew"
@@ -99,7 +68,34 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	fi
 fi
 
+if command -v yum > /dev/null 2>&1
+then
+	plugins+=(yum)
+fi
+if command -v docker > /dev/null 2>&1
+then
+	alias dgc="docker run --rm -e FORCE_IMAGE_REMOVAL=1 -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc"
+	plugins+=(docker)
+fi
 
+if command -v tmux > /dev/null 2>&1
+then
+	ZSH_TMUX_AUTOSTART=true
+#	if [ ${SSH_CONNECTION+1} ];
+#	then
+#	fi
+
+	plugins+=(tmux)
+fi
+
+if command -v pacman >/dev/null 2>&1
+then
+	plugins+=(archlinux)
+fi
+if command -v apt-get >/dev/null 2>&1
+then
+	plugins+=(debian)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -156,7 +152,7 @@ then
 	alias top=htop
 fi
 
-unsetopt autocd
+unsetopt Autocd
 export KEYTIMEOUT=1
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
