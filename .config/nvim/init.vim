@@ -27,9 +27,9 @@ set relativenumber
 set wildignore+=**/node_modules/*
 set wildignore+=**/dist/*
 
+nnoremap ; :Buffer<CR>
+nnoremap <C-p> :GFiles<CR>
 
-nnoremap <C-;> :GFiles<CR>
-nnoremap ; :Files<CR>
 if executable('rg')
 	let $FZF_DEFAULT_COMMAND = 'rg --glob="!.git/*" --hidden -l ""'
 endif
@@ -46,7 +46,7 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 """ coc-vim settings
-let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json', 'coc-git']
+let g:coc_global_extensions = ['coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json', 'coc-git']
 
 " TextEdit might fail if hidden is not set.
 set hidden
