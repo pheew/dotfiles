@@ -18,6 +18,7 @@ call plug#end()
 set termguicolors
 syntax enable
 set background=light
+let g:solarized_diffmode = "high"
 autocmd vimenter * ++nested colorscheme solarized8
 
 set number
