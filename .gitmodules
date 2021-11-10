@@ -1,16 +1,6 @@
-[submodule ".powershell/git"]
-	path = .powershell/git
-	url = git@github.com:pheew/posh-git.git
-
-[submodule ".vim/bundle/neobundle.vim"]
-	path = .vim/bundle/neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
-[submodule ".config/awesome/lain"]
-	path = .config/awesome/lain
-	url = git@github.com:copycat-killer/lain.git
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
