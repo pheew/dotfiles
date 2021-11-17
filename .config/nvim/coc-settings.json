@@ -1,0 +1,22 @@
+{
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.autoFixOnSave": true,
+  "yaml.format.enable": true,
+  "git.addGBlameToVirtualText": true,
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "typescriptreact", "graphql"]
+    }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck",
+    "yaml": ["yamllint"]
+  }
+}
