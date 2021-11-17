@@ -1,19 +1,28 @@
 /*
 !.gitignore
-!.bash/.gitignore
-!.bashrc
-!.powershell/
+
+# git
 !.gitattributes
 !.gitcolors
 !.dir_colors/
+
+!.bash/.gitignore
+!.bashrc
+
+# zsh
 !.zshrc
 !.oh-my-zsh/
+!.custom-zsh
+
 !.tmux.conf
 !.yaourtrc
-!.config/awesome/
 !.tmux/plugins/
-!.custom-zsh/**
-.config/
-!.config/nvim/**
+
+# config
+!.config
+.config/*
+
+!.config/nvim
 !.config/bat
+
 !.ideavimrc
