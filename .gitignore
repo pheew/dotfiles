@@ -14,6 +14,6 @@
 !.tmux/plugins/
 !.custom-zsh/**
 .config/
-!.config/nvim/
+!.config/nvim/**
 !.config/bat
 !.ideavimrc

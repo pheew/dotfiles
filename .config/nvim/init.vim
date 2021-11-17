@@ -47,7 +47,7 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 """ coc-vim settings
-let g:coc_global_extensions = ['coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json', 'coc-git']
+let g:coc_global_extensions = ['coc-eslint', 'coc-sh', 'coc-prettier', 'coc-tsserver', 'coc-yaml', 'coc-json', 'coc-git', 'coc-diagnostic']
 
 " TextEdit might fail if hidden is not set.
 set hidden
