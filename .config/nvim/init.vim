@@ -4,15 +4,21 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/jsonc.vim'
+
+let g:chadtree_settings = { 'theme.icon_glyph_set': 'ascii' } 
 
 " Initialize plugin system
 call plug#end()
+
+" temp fix, once it's fixed upstream this can removed
+autocmd BufNewFile,BufRead tsconfig*.json setlocal filetype=jsonc
 
 " Syntax highlight / theme 
 set termguicolors
@@ -29,7 +35,7 @@ set wildignore+=**/node_modules/*
 set wildignore+=**/dist/*
 
 nnoremap ; :Buffer<CR>
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :Files<CR>
 
 if executable('rg')
 	let $FZF_DEFAULT_COMMAND = 'rg --glob="!.git/*" --hidden -l ""'
@@ -218,7 +224,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " disable coc in git commits
 autocmd BufRead,BufNewFile COMMIT_EDITMSG let b:coc_enabled=0
 
-" NERDTreeToggle
-map <C-n> :NERDTreeToggle<CR>
+" CHADopen
+map <C-n> :CHADopen<CR>
+
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
