@@ -8,11 +8,12 @@ Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/jsonc.vim'
 
-let g:chadtree_settings = { 'theme.icon_glyph_set': 'ascii' } 
+let g:chadtree_settings = { 'theme.icon_glyph_set': 'ascii', 'theme.text_colour_set': 'solarized_light', 'theme.icon_colour_set': 'none'} 
 
 " Initialize plugin system
 call plug#end()
