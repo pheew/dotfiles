@@ -9,14 +9,17 @@
   "yaml.format.enable": true,
   "git.addGBlameToVirtualText": true,
   "languageserver": {
-    "graphql": {
-      "command": "graphql-lsp",
-      "args": ["server", "-m", "stream"],
-      "filetypes": ["typescript", "typescriptreact", "graphql"]
-    }
+//    "graphql": {
+//      "command": "graphql-lsp",
+//      "args": ["server", "-m", "stream"],
+//      "filetypes": ["typescript", "typescriptreact", "graphql"]
+//    }
   },
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
     "yaml": ["yamllint"]
-  }
+  },
+  "tsserver.implicitProjectConfig.checkJs": true,
+  "javascript.suggest.autoImports": true,
+  "list.height": 20
 }
