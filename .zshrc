@@ -81,6 +81,7 @@ fi
 if command -v tmux > /dev/null 2>&1
 then
 	ZSH_TMUX_AUTOSTART=true
+	ZSH_TMUX_AUTOQUIT=false
 #	if [ ${SSH_CONNECTION+1} ];
 #	then
 #	fi
