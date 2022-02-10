@@ -3,17 +3,39 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" Coc, VScode like plugin support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Theming
 Plug 'lifepillar/vim-solarized8'
+
 Plug 'tpope/vim-surround'
+
+" Fern, file explorer
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+
+" Git support
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+
+" Fzf, for file and buffer switching
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" Source file support
 Plug 'neoclide/jsonc.vim'
 
-let g:chadtree_settings = { 'theme.icon_glyph_set': 'ascii', 'theme.text_colour_set': 'solarized_light', 'theme.icon_colour_set': 'none'} 
+" Respect .editorconfig settings
+Plug 'editorconfig/editorconfig-vim'
+
+" Easy comment management
+Plug 'preservim/nerdcommenter'
 
 " Initialize plugin system
 call plug#end()
@@ -27,6 +49,7 @@ syntax enable
 set background=light
 let g:solarized_diffmode = "high"
 autocmd vimenter * ++nested colorscheme solarized8
+let g:airline_theme='solarized'
 
 set number
 set relativenumber
@@ -41,6 +64,12 @@ nnoremap <C-p> :Files<CR>
 if executable('rg')
 	let $FZF_DEFAULT_COMMAND = 'rg --glob="!.git/*" --hidden -l ""'
 endif
+
+" END fzf
+
+" Fern
+let g:fern#renderer = "nerdfont"
+map <C-n> :Fern . -reveal=% -wait<CR>
 
 " ripgrep
 function! RipgrepFzf(query, fullscreen)
@@ -225,8 +254,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " disable coc in git commits
 autocmd BufRead,BufNewFile COMMIT_EDITMSG let b:coc_enabled=0
 
-" CHADopen
-map <C-n> :CHADopen<CR>
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
