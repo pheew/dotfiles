@@ -19,6 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-hijack.vim'
 
 " Git support
 Plug 'tpope/vim-fugitive'
