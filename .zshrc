@@ -180,9 +180,10 @@ unsetopt Autocd
 export KEYTIMEOUT=1
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-if [ -x /usr/libexec/path_helper ]; then
-	eval $(/usr/libexec/path_helper -s)
-fi
+#if [ -x /usr/libexec/path_helper ]; then
+#	eval $(/usr/libexec/path_helper -s)
+#fi
+
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
