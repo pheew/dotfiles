@@ -45,7 +45,18 @@ ZSH_CUSTOM=$HOME/.custom-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast git git-custom systemd systemd-custom bower sudo common-aliases golang zsh_reload yarn npm vi-mode history-substring-search nextjs-custom)
+plugins=(
+	gitfast 
+	git
+	git-custom
+	sudo
+	common-aliases
+	golang
+	yarn
+	npm
+	vi-mode
+	nextjs-custom
+)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	if [[ `arch` == "arm64" ]]; then
@@ -68,34 +79,46 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	fi
 fi
 
-if command -v yum > /dev/null 2>&1
-then
-	plugins+=(yum)
+function command_exists {
+	local cmd
+	cmd="${1}"
+
+	command -v "$cmd" > /dev/null 2>&1 
+}
+
+function if_exists {
+	local cmd
+	cmd="${1}"
+
+	local plugin
+	plugin="${2-$cmd}"
+
+	if command_exists "$cmd"; then
+		plugins+=($plugin)
+	fi
+}
+
+if command_exists system-ctl; then
+	plugins+=(systemd custom-systemd)
 fi
-if command -v docker > /dev/null 2>&1
-then
+
+if_exists yum
+if_exists fzf
+if_exists pacman archlinux
+if_exists apt-get debian
+if_exists fd
+if_exists rg ripgrep
+
+if command_exists docker; then
 	alias dgc="docker run --rm -e FORCE_IMAGE_REMOVAL=1 -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc"
 	plugins+=(docker)
 fi
 
-if command -v tmux > /dev/null 2>&1
-then
+if command_exists tmux; then
 	ZSH_TMUX_AUTOSTART=true
 	ZSH_TMUX_AUTOQUIT=false
-#	if [ ${SSH_CONNECTION+1} ];
-#	then
-#	fi
 
 	plugins+=(tmux)
-fi
-
-if command -v pacman >/dev/null 2>&1
-then
-	plugins+=(archlinux)
-fi
-if command -v apt-get >/dev/null 2>&1
-then
-	plugins+=(debian)
 fi
 
 source $ZSH/oh-my-zsh.sh
