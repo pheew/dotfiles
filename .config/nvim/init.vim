@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
 source ~/.config/nvim/plugins/coc.vim
 
 " Status line plugin
-source ~/.config/nvim/plugins/airline.vim
+source ~/.config/nvim/plugins/statusline.vim
 
 " Theming
 source ~/.config/nvim/plugins/solarized.vim
