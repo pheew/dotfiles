@@ -162,17 +162,17 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-export EDITOR=vim
-if command -v nvim > /dev/null 2>&1
-then
+if command_exists vim; then
+	export EDITOR=vim
+fi
+if command_exists nvim; then
 	alias vim=nvim
 fi
 
 unalias gg
 alias gg="git gui &"
 
-if command -v htop > /dev/null 2>&1
-then
+if command_exists htop; then
 	alias top=htop
 fi
 
@@ -185,3 +185,10 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if [ -f .secrets.sh]; then
+	source .secrets.sh
+fi
+
