@@ -189,7 +189,7 @@ bindkey "^[[B" history-substring-search-down
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -f .secrets.sh]; then
+if [ -f .secrets.sh ]; then
 	source .secrets.sh
 fi
 
