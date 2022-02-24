@@ -48,4 +48,56 @@ packer.startup(function(use)
 	      require('user.plugins.telescope')
 	    end
 	}
+
+	use {
+	  'L3MON4D3/LuaSnip',
+	  config = function()
+	    require('user.plugins.luasnip')
+	  end
+	}
+
+	use {
+	    'nvim-treesitter/nvim-treesitter',
+	    run = ':TSUpdate',
+	    requires = {
+	      'nvim-treesitter/playground',
+	      'nvim-treesitter/nvim-treesitter-textobjects',
+	      'lewis6991/spellsitter.nvim',
+	      'JoosepAlviste/nvim-ts-context-commentstring',
+	    },
+	    config = function()
+	      require('user.plugins.treesitter')
+	      require('spellsitter').setup()
+	    end
+	}
+
+	use {
+	    'neovim/nvim-lspconfig',
+	    requires = {
+	    'hrsh7th/nvim-cmp',
+	      'b0o/schemastore.nvim',
+	      --'folke/lsp-colors.nvim',
+	      'weilbith/nvim-code-action-menu',
+	    },
+	    config = function ()
+	      require('user.plugins.lspconfig')
+	    end
+	}
+
+	 use {
+	    'hrsh7th/nvim-cmp',
+	    requires = {
+	      'hrsh7th/cmp-nvim-lsp',
+	      'hrsh7th/cmp-buffer',
+	      'saadparwaiz1/cmp_luasnip',
+	      'L3MON4D3/LuaSnip',
+	      'jessarcher/cmp-path',
+	      'hrsh7th/cmp-nvim-lua',
+	      'onsails/lspkind-nvim',
+	      'hrsh7th/cmp-nvim-lsp-signature-help',
+	    },
+	    config = function()
+	      require('user.plugins.cmp')
+	    end
+	  }
 end)

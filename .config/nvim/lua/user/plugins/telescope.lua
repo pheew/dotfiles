@@ -9,6 +9,11 @@ telescope.setup {
 				['<esc>'] = actions.close,
 			}
 		}
+	},
+	pickers = {
+	  buffers = {
+	    sort_lastused = true
+	  }
 	}
 }
 
