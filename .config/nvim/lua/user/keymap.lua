@@ -22,3 +22,5 @@ m('', '<C-n>', ':Fern . -reveal=% -wait<CR>', { silent = true})
 
 -- Show history
 m('n', '<leader>h', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+
+m('', '<leader>br', ':GBrowse!<CR>')
