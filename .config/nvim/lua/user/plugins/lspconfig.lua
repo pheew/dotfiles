@@ -1,6 +1,8 @@
 local buf_option = vim.api.nvim_buf_set_option
 local buf_keymap = require 'lib.utils'.buf_keymap
 
+local lspconfig = require 'lspconfig'
+
 vim.diagnostic.config {
   virtual_text = false,
   severity_sort = true,
@@ -48,24 +50,19 @@ end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+local noConfigServers = { 'bashls', 'dockerls', 'tsserver', 'cssls', 'graphql', 'yamlls' }
 
-require'lspconfig'.bashls.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
+for _, lsp in ipairs(noConfigServers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }
+end
 
-require'lspconfig'.dockerls.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-require'lspconfig'.eslint.setup{
+lspconfig.eslint.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
@@ -76,7 +73,7 @@ require'lspconfig'.eslint.setup{
   },
 }
 
-require'lspconfig'.jsonls.setup{
+lspconfig.jsonls.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
@@ -89,26 +86,11 @@ require'lspconfig'.jsonls.setup{
   }
 }
 
-require'lspconfig'.tsserver.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-require'lspconfig'.cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-require'lspconfig'.graphql.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+lspconfig.sumneko_lua.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {

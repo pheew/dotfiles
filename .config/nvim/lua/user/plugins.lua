@@ -5,7 +5,7 @@ packer.startup(function(use)
    	use { 'tpope/vim-sleuth' } -- Indent autodetection with editorconfig support
    	use { 'tpope/vim-surround' }
 
-	use { 
+	use {
 		'lambdalisue/fern.vim',
 		requires = {
 			'lambdalisue/nerdfont.vim',
@@ -19,8 +19,8 @@ packer.startup(function(use)
 		end
 	}
 
-	use { 
-		'lifepillar/vim-solarized8' ,
+	use {
+    	'lifepillar/vim-solarized8' ,
 		setup = function() 
 			vim.g.solarized_diffmode = 'high'
 			vim.cmd [[ 
@@ -100,4 +100,12 @@ packer.startup(function(use)
 	      require('user.plugins.cmp')
 	    end
 	  }
+
+         use {
+            'nvim-lualine/lualine.nvim',
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+            config = function() 
+               require('user.plugins.lualine')
+            end
+         }
 end)
