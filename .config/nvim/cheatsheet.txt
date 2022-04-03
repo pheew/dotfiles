@@ -11,3 +11,10 @@ References | gr
 Diagnostics | <leader>d
 Symbols outline | <leader>so
 
+### Format
+
+Format code | <leader>f
+
+### Navigation
+
+Open file explorer | <leader>n

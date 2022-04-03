@@ -18,7 +18,7 @@ m('n', '<S-f>', [[<cmd>lua require('telescope').extensions.live_grep_raw.live_gr
 -- nmap <silent> <S-f> :Telescope live_grep<cr>
 
 -- Open file explorer
-m('', '<C-n>', ':Fern . -reveal=% -wait<CR>', { silent = true})
+m('', '<leader>n', ':Fern . -reveal=% -wait<CR>', { silent = true})
 
 -- Show history
 m('n', '<leader>h', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
