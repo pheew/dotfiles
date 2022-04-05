@@ -1,0 +1,20 @@
+## lsp
+
+Go to definition |  gD
+Showing floating type info | K
+Go to implementation | gi
+Signature help | <C-k>
+Type definition | <leader>D
+Rename symbol | <leader>rn
+References | gr
+(Range) Code Action | <leader>ca
+Diagnostics | <leader>d
+Symbols outline | <leader>so
+
+### Format
+
+Format code | <leader>f
+
+### Navigation
+
+Open file explorer | <leader>n
