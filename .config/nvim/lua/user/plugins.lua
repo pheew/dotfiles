@@ -3,9 +3,13 @@ local packer = require "lib.packer-init"
 packer.startup(
     function(use)
         use {"wbthomason/packer.nvim"} -- Let packer manage itself
+
         use {"tpope/vim-sleuth"} -- Indent autodetection with editorconfig support
+
+        -- Change surrounding braces easily
         use {"tpope/vim-surround"}
 
+        -- File explorer
         use {
             "lambdalisue/fern.vim",
             requires = {
@@ -20,6 +24,7 @@ packer.startup(
             end
         }
 
+        -- Theme
         use {
             "lifepillar/vim-solarized8",
             setup = function()
@@ -31,12 +36,14 @@ packer.startup(
             end
         }
 
+        -- Adds git integration
         use {
             "tpope/vim-fugitive",
             requires = "tpope/vim-rhubarb"
             --cmd = 'G',
         }
 
+        -- Provides searchable lists
         use {
             "nvim-telescope/telescope.nvim",
             requires = {
@@ -50,6 +57,7 @@ packer.startup(
             end
         }
 
+        -- Adds support for code snippets
         use {
             "L3MON4D3/LuaSnip",
             requires = {
@@ -60,6 +68,7 @@ packer.startup(
             end
         }
 
+        -- Use treesitter for syntax highlighting
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
@@ -75,6 +84,7 @@ packer.startup(
             end
         }
 
+        -- Adds Language Server Protocol config
         use {
             "neovim/nvim-lspconfig",
             requires = {
@@ -88,6 +98,10 @@ packer.startup(
             end
         }
 
+        -- Add completion. Plugins are adding:
+        -- symbols from lsp
+        -- snippets
+        -- words from buffer
         use {
             "hrsh7th/nvim-cmp",
             requires = {
@@ -105,11 +119,13 @@ packer.startup(
             end
         }
 
+        -- Nice code outline for current buffer
         use {
             "simrat39/symbols-outline.nvim",
             requires = {"neovim/nvim-lspconfig"}
         }
 
+        -- Adds status line and tab line
         use {
             "nvim-lualine/lualine.nvim",
             requires = {"kyazdani42/nvim-web-devicons", opt = true},
@@ -118,6 +134,7 @@ packer.startup(
             end
         }
 
+        -- Adds searchable cheatsheet
         use {
             "sudormrfbin/cheatsheet.nvim",
             requires = {
@@ -125,10 +142,19 @@ packer.startup(
             }
         }
 
+        -- Adds code formatting support
         use {
             "sbdchd/neoformat",
             config = function()
                 require("user.plugins.neoformat")
+            end
+        }
+
+        -- Adds interactive help
+        use {
+            "folke/which-key.nvim",
+            config = function()
+                require("user.plugins.which-key")
             end
         }
     end
