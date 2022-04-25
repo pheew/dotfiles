@@ -158,5 +158,14 @@ packer.startup(
                 require("user.plugins.which-key")
             end
         }
+
+        use {
+            "ibhagwan/fzf-lua",
+            -- optional for icon support
+            requires = {"kyazdani42/nvim-web-devicons"},
+            config = function()
+                require("user.plugins.fzf-lua")
+            end
+        }
     end
 )

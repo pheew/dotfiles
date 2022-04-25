@@ -15,7 +15,8 @@ m("", "<leader>vc", ":e $MYVIMRC<cr>", {silent = true})
 m("", "<leader>vr", ':luafile $MYVIMRC<cr> :echo "config reloaded"<cr>')
 
 -- Find buffer
-m("n", ";", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+m("n", ";", ":FzfLua buffers<CR>")
+--m("n", ";", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 
 -- Find file in project
 m("n", "<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
@@ -29,5 +30,4 @@ m("", "<leader>n", ":Fern . -reveal=% -wait<CR>", {silent = true})
 
 -- Show history
 m("n", "<leader>h", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-
 m("", "<leader>br", ":GBrowse!<CR>")
