@@ -9,7 +9,8 @@ Rename symbol | <leader>rn
 References | gr
 (Range) Code Action | <leader>ca
 Diagnostics | <leader>d
-Symbols outline | <leader>so
+Symbols outline | <leader>os
+Find symbols | <leader>of
 
 ### Format
 
