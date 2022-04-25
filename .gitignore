@@ -1,5 +1,6 @@
 /*
 !.gitignore
+!.gitconfig
 
 # git
 !.gitattributes
@@ -25,5 +26,7 @@
 !.config/nvim
 .config/nvim/plugin/packer_compiled.lua
 !.config/bat
+
+!.config/git
 
 !.ideavimrc
