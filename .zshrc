@@ -136,12 +136,12 @@ fi
 unsetopt Autocd
 #export KEYTIMEOUT=1
 
-reload() {
+function reload() {
+        echo 'reloading zsh config...'
         exec zsh
-        echo 'zsh config reloaded'
 }
 
-timezsh() {
+function timezsh() {
         shell=${1-$SHELL}
         for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
