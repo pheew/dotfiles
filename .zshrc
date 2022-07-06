@@ -133,6 +133,10 @@ if command_exists htop; then
         alias top=htop
 fi
 
+if command_exists tree; then
+        alias tree="tree --gitignore"
+fi
+
 unsetopt Autocd
 #export KEYTIMEOUT=1
 
