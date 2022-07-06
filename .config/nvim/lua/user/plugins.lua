@@ -167,5 +167,20 @@ packer.startup(
                 require("user.plugins.fzf-lua")
             end
         }
+
+        use {
+            "goolord/alpha-nvim",
+            requires = {"kyazdani42/nvim-web-devicons"},
+            config = function()
+                require "alpha".setup(require "alpha.themes.startify".config)
+            end
+        }
+
+        use {
+            "norcalli/nvim-colorizer.lua",
+            config = function() 
+                require'colorizer'.setup()
+            end
+        }
     end
 )

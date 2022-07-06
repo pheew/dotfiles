@@ -1,7 +1,7 @@
 require("lualine").setup {
     options = {
         theme = "solarized_light",
-        disabled_filetypes = {"fern"}
+        disabled_filetypes = {"fern", "alpha"}
     },
     sections = {
         lualine_a = {"mode"},
