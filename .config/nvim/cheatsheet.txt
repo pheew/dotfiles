@@ -19,3 +19,11 @@ Format code | <leader>f
 ### Navigation
 
 Open file explorer | <leader>n
+
+### Comment
+Comment line, linewise | gcc
+Comment line, block wise | gbc
+
+### External commands
+
+Pipe results of commands into buffer | :new | r ! <cmd>

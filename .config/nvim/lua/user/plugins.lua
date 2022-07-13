@@ -178,8 +178,16 @@ packer.startup(
 
         use {
             "norcalli/nvim-colorizer.lua",
-            config = function() 
-                require'colorizer'.setup()
+            config = function()
+                require "colorizer".setup()
+            end
+        }
+
+        -- Comments
+        use {
+            "numToStr/Comment.nvim",
+            config = function()
+                require("Comment").setup()
             end
         }
     end
