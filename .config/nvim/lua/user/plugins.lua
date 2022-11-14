@@ -67,6 +67,12 @@ packer.startup(
             end
         }
 
+        -- Add support for LuaSnip in telescope
+        use {
+            "benfowler/telescope-luasnip.nvim",
+            module = "telescope._extensions.luasnip" -- if you wish to lazy-load
+        }
+
         -- Use treesitter for syntax highlighting
         use {
             "nvim-treesitter/nvim-treesitter",
