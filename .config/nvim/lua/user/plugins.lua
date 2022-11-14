@@ -12,16 +12,14 @@ packer.startup(
         -- File explorer
         use {
             "lambdalisue/fern.vim",
+            branch = "main",
             requires = {
                 "lambdalisue/nerdfont.vim",
                 "lambdalisue/fern-renderer-nerdfont.vim",
                 "lambdalisue/fern-hijack.vim"
             },
             setup = function()
-                vim.cmd [[ 
-                                let g:fern#renderer = "nerdfont"
-                                let g:fern#default_hidden = 1
-			]]
+                require("user.plugins.fern")
             end
         }
 
