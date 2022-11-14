@@ -1,33 +1,32 @@
-local m = require "lib.utils".keymap
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Allow gf to open non-existent files
-m("", "gf", ":edit <cfile><CR>")
+vim.keymap.set("", "gf", ":edit <cfile><CR>")
 
 -- Reselect visual selection after indenting
-m("v", "<", "<gv")
-m("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Easy config file changes
-m("", "<leader>vc", ":e $MYVIMRC<cr>", {silent = true})
-m("", "<leader>vr", ':luafile $MYVIMRC<cr> :echo "config reloaded"<cr>')
+vim.keymap.set("", "<leader>vc", ":e $MYVIMRC<cr>", {silent = true})
+vim.keymap.set("", "<leader>vr", ':luafile $MYVIMRC<cr> :echo "config reloaded"<cr>')
 
 -- Find buffer
-m("n", ";", ":FzfLua buffers<CR>")
---m("n", ";", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+vim.keymap.set("n", ";", ":Telescope buffers<CR>")
 
 -- Find file in project
-m("n", "<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
+vim.keymap.set("n", "<C-p>", [[:FzfLua files<CR>]])
 
 -- Find in project
-m("n", "<S-f>", [[<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<CR>]])
--- nmap <silent> <S-f> :Telescope live_grep<cr>
+vim.keymap.set("n", "<S-f>", [[:FzfLua live_grep<CR>]])
 
 -- Open file explorer
-m("", "<leader>n", ":Fern . -reveal=% -wait<CR>", {silent = true})
+vim.keymap.set("", "<leader>n", ":Fern . -reveal=% -wait<CR>", {silent = true})
 
 -- Show history
-m("n", "<leader>h", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-m("", "<leader>br", ":GBrowse!<CR>")
+vim.keymap.set("n", "<leader>h", [[<cmd>FzfLua oldfiles<CR>]])
+vim.keymap.set("", "<leader>br", ":GBrowse!")
+
+-- Builtin lists
+vim.keymap.set("n", "<S-l>", [[:FzfLua builtin<CR>]])
