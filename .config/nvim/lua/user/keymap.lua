@@ -30,3 +30,6 @@ vim.keymap.set("", "<leader>br", ":GBrowse!")
 
 -- Builtin lists
 vim.keymap.set("n", "<S-l>", [[:FzfLua builtin<CR>]])
+
+-- Show available snippets
+vim.keymap.set("n", "<leader>s", [[:Telescope luasnip<CR>]])

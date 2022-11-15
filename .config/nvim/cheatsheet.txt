@@ -27,3 +27,7 @@ Comment line, block wise | gbc
 ### External commands
 
 Pipe results of commands into buffer | :new | r ! <cmd>
+
+### Snippets
+
+Open available snippets explorer | <leader>s
