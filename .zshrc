@@ -23,6 +23,7 @@ plugins=(
         golang
         yarn
         npm
+        node-custom
         vi-mode
         nextjs-custom
         fzf
