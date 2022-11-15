@@ -22,3 +22,5 @@
 [include]
 	path=.config/git/delta.inc
 	path=.config/git/vim.inc
+[pull]
+	rebase = true
