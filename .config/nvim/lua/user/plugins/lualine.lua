@@ -12,7 +12,12 @@ require("lualine").setup {
         lualine_z = {"location"}
     },
     tabline = {
-        lualine_a = {"buffers"},
+        lualine_a = {
+            {
+                "buffers",
+                show_filename_only = false
+            }
+        },
         lualine_x = {},
         lualine_y = {},
         lualine_z = {"tabs"}
