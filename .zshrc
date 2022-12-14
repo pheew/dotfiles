@@ -18,7 +18,6 @@ plugins=(
         gitfast
         git
         git-custom
-        sudo
         common-aliases
         golang
         yarn
@@ -31,12 +30,14 @@ plugins=(
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-        if [[ $(arch) == "arm64" ]]; then
-                local brew_bin="/opt/homebrew/bin/brew"
+        local brew_bin
+        if [[ "$(arch)" == "arm64" ]]; then
+                brew_bin="/opt/homebrew/bin/brew"
         else
-                local brew_bin="/usr/local/homebrew/bin/brew"
+                brew_bin="/usr/local/homebrew/bin/brew"
         fi
-        if stat $brew_bin >/dev/null 2>&1; then
+
+        if [[ -f "$brew_bin" ]]; then
                 plugins+=(brew)
                 local brew_prefix=$($brew_bin config | awk -F ': ' '/HOMEBREW_PREFIX/ {print $2}')
                 export PATH="${brew_prefix}/bin:${brew_prefix}/sbin${PATH+:$PATH}:"
@@ -60,7 +61,7 @@ function command_exists {
         local cmd
         cmd="${1}"
 
-        command -v "$cmd" >/dev/null 2>&1
+        [ command -v "$cmd" >/dev/null 2>&1 ]
 }
 
 function if_exists {
@@ -109,9 +110,9 @@ export PATH="${PATH}:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/bin:/usr/loc
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin #add go paths
 
 # Node bin take precedence over global paths
-export PATH=./node_modules/.bin:~/.yarn/bin:$PATH # add nodejs path
+export PATH="./node_modules/.bin:~/.yarn/bin:${PATH}" # add nodejs path
 
-if [ -f ~/.nvm/nvm.sh ]; then
+if [[ -f ~/.nvm/nvm.sh ]]; then
         export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
         export NVM_SYMLINK_CURRENT="true"
@@ -120,15 +121,13 @@ if [ -f ~/.nvm/nvm.sh ]; then
         export PATH="~/.nvm/current/bin:$PATH"
 fi
 
+# Setup (neo)vim
 if command_exists vim; then
         export EDITOR=vim
 fi
 if command_exists nvim; then
         alias vim=nvim
 fi
-
-unalias gg
-alias gg="git gui &"
 
 if command_exists htop; then
         alias top=htop
