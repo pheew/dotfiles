@@ -9,6 +9,14 @@ packer.startup(
         -- Change surrounding braces easily
         use {"tpope/vim-surround"}
 
+        -- Provides some nicer UI for selection windows and such
+        use {
+            "stevearc/dressing.nvim",
+            config = function()
+                require("user.plugins.dressing")
+            end
+        }
+
         -- File explorer
         use {
             "lambdalisue/fern.vim",
@@ -94,9 +102,8 @@ packer.startup(
             "neovim/nvim-lspconfig",
             requires = {
                 "hrsh7th/nvim-cmp",
-                "b0o/schemastore.nvim",
+                "b0o/schemastore.nvim"
                 --'folke/lsp-colors.nvim',
-                "weilbith/nvim-code-action-menu"
             },
             config = function()
                 require("user.plugins.lspconfig")
@@ -172,6 +179,7 @@ packer.startup(
             end
         }
 
+        -- greeter
         use {
             "goolord/alpha-nvim",
             requires = {"kyazdani42/nvim-web-devicons"},
@@ -180,6 +188,7 @@ packer.startup(
             end
         }
 
+        -- color highlighting
         use {
             "norcalli/nvim-colorizer.lua",
             config = function()
@@ -192,6 +201,30 @@ packer.startup(
             "numToStr/Comment.nvim",
             config = function()
                 require("Comment").setup()
+            end
+        }
+
+        -- session manager
+        use {
+            "rmagatti/auto-session",
+            config = function()
+                require("auto-session").setup {
+                    log_level = "error"
+                    -- auto_session_suppress_dirs = {"~/", "~/Projects", "~/Downloads", "/"}
+                }
+            end
+        }
+
+        use {
+            "rmagatti/session-lens",
+            requires = {"rmagatti/auto-session", "nvim-telescope/telescope.nvim"},
+            config = function()
+                require("session-lens").setup(
+                    {
+                        prompt_title = "Let's have a sesh",
+                        previewer = true
+                    }
+                )
             end
         }
     end
