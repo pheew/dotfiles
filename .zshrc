@@ -61,7 +61,7 @@ function command_exists {
         local cmd
         cmd="${1}"
 
-        [ command -v "$cmd" >/dev/null 2>&1 ]
+        command -v "$cmd" >/dev/null 2>&1
 }
 
 function if_exists {
