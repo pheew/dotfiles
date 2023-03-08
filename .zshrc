@@ -19,6 +19,7 @@ plugins=(
         git
         git-custom
         common-aliases
+        common-custom
         golang
         yarn
         npm
