@@ -110,6 +110,14 @@ packer.startup(
             end
         }
 
+        use {
+            "folke/trouble.nvim",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function()
+                require("user.plugins.trouble")
+            end
+        }
+
         -- Add completion. Plugins are adding:
         -- symbols from lsp
         -- snippets

@@ -33,3 +33,6 @@ vim.keymap.set("n", "<S-l>", [[:FzfLua builtin<CR>]])
 
 -- Show available snippets
 vim.keymap.set("n", "<leader>s", [[:Telescope luasnip<CR>]])
+
+-- Show Trouble screen
+vim.keymap.set("n", "<leader>t", [[:Trouble document_diagnostics<CR>]])
