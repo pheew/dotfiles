@@ -89,7 +89,10 @@ if_exists fzf
 if_exists pacman archlinux
 if_exists apt-get debian
 if_exists fd
-if_exists rg ripgrep
+if command_exists rg; then
+        export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+        plugins+=(ripgrep)
+fi
 
 if command_exists docker; then
         alias dgc="docker run --rm -e FORCE_IMAGE_REMOVAL=1 -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc"
