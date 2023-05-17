@@ -28,5 +28,6 @@
 !.config/bat
 !.config/kitty
 !.config/git
+!.config/ripgrep
 
 !.ideavimrc
