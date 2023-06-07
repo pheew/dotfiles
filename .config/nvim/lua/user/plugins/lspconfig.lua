@@ -48,7 +48,7 @@ end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local noConfigServers = {"bashls", "dockerls", "tsserver", "cssls", "graphql", "yamlls"}
+local noConfigServers = {"bashls", "dockerls", "tsserver", "cssls", "graphql"}
 
 for _, lsp in ipairs(noConfigServers) do
     lspconfig[lsp].setup {
@@ -59,6 +59,20 @@ for _, lsp in ipairs(noConfigServers) do
         }
     }
 end
+
+lspconfig.yamlls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 150
+    },
+    settings = {
+        yaml = {
+            -- FIX mapKeyOrder warning
+            -- keyOrdering = false
+        }
+    }
+}
 
 lspconfig.eslint.setup {
     on_attach = on_attach,
