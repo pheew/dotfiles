@@ -31,3 +31,5 @@
 !.config/ripgrep
 
 !.ideavimrc
+
+.DS_Store
