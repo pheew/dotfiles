@@ -214,13 +214,8 @@ packer.startup(
 
         -- session manager
         use {
-            "rmagatti/auto-session",
-            config = function()
-                require("auto-session").setup {
-                    log_level = "error"
-                    -- auto_session_suppress_dirs = {"~/", "~/Projects", "~/Downloads", "/"}
-                }
-            end
+            "jedrzejboczar/possession.nvim",
+            requires = {"nvim-lua/plenary.nvim"}
         }
 
         use {

@@ -156,14 +156,30 @@ return {
     },
     -- session manager
     {
-        "rmagatti/auto-session",
+        "jedrzejboczar/possession.nvim",
+        dependencies = {"nvim-lua/plenary.nvim"},
+        lazy = false,
         config = function()
-            require("auto-session").setup {
-                log_level = "error"
-                -- auto_session_suppress_dirs = {"~/", "~/Projects", "~/Downloads", "/"}
+            require("possession").setup {
+                autosave = {
+                    current = true, -- or fun(name): boolean
+                    tmp = true, -- or fun(): boolean
+                    tmp_name = "tmp", -- or fun(): string
+                    on_load = true,
+                    on_quit = true
+                }
             }
         end
     },
+    -- {
+    --     "rmagatti/auto-session",
+    --     config = function()
+    --         require("auto-session").setup {
+    --             log_level = "error"
+    --             -- auto_session_suppress_dirs = {"~/", "~/Projects", "~/Downloads", "/"}
+    --         }
+    --     end
+    -- },
     {
         "rmagatti/session-lens",
         dependencies = {"rmagatti/auto-session", "nvim-telescope/telescope.nvim"},
