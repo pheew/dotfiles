@@ -12,27 +12,6 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("", "<leader>vc", ":e $MYVIMRC<cr>", {silent = true})
 vim.keymap.set("", "<leader>vr", ':luafile $MYVIMRC<cr> :echo "config reloaded"<cr>')
 
--- Find buffer
-vim.keymap.set("n", ";", ":Telescope buffers<CR>")
+vim.keymap.set("n", "<leader>b", "<cmd>bd<cr>", {silent = true, desc = "Delete [b]uffer"})
 
--- Find file in project
-vim.keymap.set("n", "<C-p>", [[:FzfLua files<CR>]])
-
--- Find in project
-vim.keymap.set("n", "<S-f>", [[:FzfLua live_grep<CR>]])
-
--- Open file explorer
-vim.keymap.set("", "<leader>n", ":Fern . -reveal=% -wait<CR>", {silent = true})
-
--- Show history
-vim.keymap.set("n", "<leader>h", [[<cmd>FzfLua oldfiles<CR>]])
-vim.keymap.set("", "<leader>br", ":GBrowse!")
-
--- Builtin lists
-vim.keymap.set("n", "<S-l>", [[:FzfLua builtin<CR>]])
-
--- Show available snippets
-vim.keymap.set("n", "<leader>s", [[:Telescope luasnip<CR>]])
-
--- Show Trouble screen
-vim.keymap.set("n", "<leader>t", [[:Trouble document_diagnostics<CR>]])
+vim.keymap.set("n", "<leader>p", "<cmd>Lazy<cr>", {silent = true, desc = "Open Lazy package manager"})

@@ -1,8 +1,8 @@
-
 return {
     -- Provides searchable lists
     {
         "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons",
@@ -13,6 +13,18 @@ return {
                 build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
             },
             "nvim-telescope/telescope-live-grep-raw.nvim"
+        },
+        keys = {
+            {
+                ";",
+                "<cmd>Telescope buffers<CR>",
+                desc = "Buffer list"
+            },
+            {
+                "<leader>s",
+                "<cmd>Telescope luasnip<CR>",
+                desc = "Show available snippets"
+            }
         },
         opts = {
             defaults = {

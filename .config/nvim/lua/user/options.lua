@@ -25,6 +25,9 @@ vim.o.backupdir = vim.fn.stdpath "data" .. "/backup//"
 -- delays and poor user experience.
 vim.o.updatetime = 300
 
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+
 -- " Don't pass messages to |ins-completion-menu|.
 -- set shortmess+=c
 
@@ -36,3 +39,8 @@ vim.o.updatetime = 300
 --else
 --  set signcolumn=yes
 --endif
+
+vim.g.mapleader = " "
+
+vim.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
