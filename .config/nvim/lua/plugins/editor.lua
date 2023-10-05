@@ -1,11 +1,12 @@
 return {
-    "tpope/vim-sleuth", -- Indent autodetection with editorconfig support
+    "tpope/vim-sleuth",   -- Indent autodetection with editorconfig support
     "tpope/vim-surround", -- Change surrounding braces easily
     -- Search
     {
         "ibhagwan/fzf-lua",
         -- optional for icon support
-        dependencies = {"kyazdani42/nvim-web-devicons"},
+        dependencies = { "kyazdani42/nvim-web-devicons" },
+        cmd = "FzfLua",
         opts = {
             fzf_opts = {
                 ["--layout"] = "default"
