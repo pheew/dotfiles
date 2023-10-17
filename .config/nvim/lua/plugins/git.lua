@@ -3,7 +3,8 @@ return {
     {
         "tpope/vim-fugitive",
         dependencies = "tpope/vim-rhubarb",
-        cmd = "G",
+        -- cmd = "G",
+        lazy = false,
         keys = {
             {
                 "<leader>br",
@@ -23,11 +24,11 @@ return {
         opts = {
             -- See `:help gitsigns.txt`
             signs = {
-                add = {text = "+"},
-                change = {text = "~"},
-                delete = {text = "_"},
-                topdelete = {text = "‾"},
-                changedelete = {text = "~"}
+                add = { text = "+" },
+                change = { text = "~" },
+                delete = { text = "_" },
+                topdelete = { text = "‾" },
+                changedelete = { text = "~" }
             },
             preview_config = {
                 -- Options passed to nvim_open_win
@@ -42,13 +43,13 @@ return {
                     "n",
                     "<leader>hp",
                     require("gitsigns").preview_hunk,
-                    {buffer = bufnr, desc = "Preview git hunk"}
+                    { buffer = bufnr, desc = "Preview git hunk" }
                 )
 
                 -- don't override the built-in and fugitive keymaps
                 local gs = package.loaded.gitsigns
                 vim.keymap.set(
-                    {"n", "v"},
+                    { "n", "v" },
                     "]c",
                     function()
                         if vim.wo.diff then
@@ -61,10 +62,10 @@ return {
                         )
                         return "<Ignore>"
                     end,
-                    {expr = true, buffer = bufnr, desc = "Jump to next hunk"}
+                    { expr = true, buffer = bufnr, desc = "Jump to next hunk" }
                 )
                 vim.keymap.set(
-                    {"n", "v"},
+                    { "n", "v" },
                     "[c",
                     function()
                         if vim.wo.diff then
@@ -77,7 +78,7 @@ return {
                         )
                         return "<Ignore>"
                     end,
-                    {expr = true, buffer = bufnr, desc = "Jump to previous hunk"}
+                    { expr = true, buffer = bufnr, desc = "Jump to previous hunk" }
                 )
             end
         }
