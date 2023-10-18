@@ -10,11 +10,17 @@ return {
             "benfowler/telescope-luasnip.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+                build =
+                "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
             },
             "nvim-telescope/telescope-live-grep-raw.nvim"
         },
         keys = {
+            {
+                "<C-p>",
+                "<cmd>Telescope git_files<CR>",
+                desc = "Find file in project"
+            },
             {
                 ";",
                 "<cmd>Telescope buffers<CR>",
@@ -36,7 +42,6 @@ return {
             },
             pickers = {
                 buffers = {
-                    -- sort_lastused = true,
                     sort_mru = true,
                     ignore_current_buffer = true,
                     mappings = {

@@ -1,6 +1,7 @@
 return {
     "tpope/vim-sleuth",   -- Indent autodetection with editorconfig support
     "tpope/vim-surround", -- Change surrounding braces easily
+
     -- Search
     {
         "ibhagwan/fzf-lua",
@@ -13,11 +14,6 @@ return {
             }
         },
         keys = {
-            {
-                "<C-p>",
-                "<cmd>FzfLua files<CR>",
-                desc = "Find file in project"
-            },
             {
                 "<S-f>",
                 "<cmd>FzfLua live_grep<CR>",
