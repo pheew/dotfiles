@@ -9,6 +9,7 @@ return {
             {
                 "<leader>br",
                 ":GBrowse!",
+                mode = { 'n', 'v' },
                 desc = "Browse repo"
             },
             {
