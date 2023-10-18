@@ -76,6 +76,7 @@ return {
 	{
 		"simrat39/symbols-outline.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
+		opts = {}
 	},
 	-- Adds status line and tab line
 	{
@@ -86,7 +87,7 @@ return {
 			return {
 				options = {
 					theme = "solarized_light",
-					disabled_filetypes = { "fern", "alpha" },
+					disabled_filetypes = { "fern", "alpha", "Outline" },
 				},
 				sections = {
 					lualine_a = { "mode" },
