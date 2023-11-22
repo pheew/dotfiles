@@ -34,6 +34,7 @@ return {
         },
         opts = {
             defaults = {
+                path_display = { "smart" },
                 mappings = {
                     i = {
                         ["<esc>"] = "close"
