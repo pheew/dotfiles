@@ -17,16 +17,6 @@ return {
         },
         keys = {
             {
-                "<C-p>",
-                "<cmd>Telescope git_files<CR>",
-                desc = "Find file in project"
-            },
-            {
-                ";",
-                "<cmd>Telescope buffers<CR>",
-                desc = "Buffer list"
-            },
-            {
                 "<leader>s",
                 "<cmd>Telescope luasnip<CR>",
                 desc = "Show available snippets"

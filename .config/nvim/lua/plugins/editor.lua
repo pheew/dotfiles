@@ -9,14 +9,25 @@ return {
         dependencies = { "kyazdani42/nvim-web-devicons" },
         cmd = "FzfLua",
         opts = {
+            'fzf-tmux',
             fzf_opts = {
                 ["--layout"] = "default"
             }
         },
         keys = {
             {
+                "<C-p>",
+                "<cmd>FzfLua git_files<CR>",
+                desc = "Find file in project"
+            },
+            {
+                ";",
+                "<cmd>FzfLua buffers<CR>",
+                desc = "Buffer list"
+            },
+            {
                 "<S-f>",
-                "<cmd>FzfLua live_grep<CR>",
+                "<cmd>FzfLua live_grep_glob<CR>",
                 desc = "Find in project"
             },
             {
