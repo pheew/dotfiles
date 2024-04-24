@@ -10,6 +10,8 @@ vim.o.background = "light"
 vim.o.number = true
 vim.o.relativenumber = true
 
+vim.o.tabstop = 4
+
 vim.o.scrolloff = 8 -- keeps some cursor context when scrolling
 
 -- " TextEdit might fail if hidden is not set.
