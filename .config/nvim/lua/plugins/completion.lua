@@ -97,12 +97,12 @@ return {
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
 		dependencies = {
-			-- {
-			-- 	"honza/vim-snippets",
-			-- 	config = function()
-			-- 		require("luasnip.loaders.from_snipmate").lazy_load()
-			-- 	end,
-			-- },
+			{
+				"honza/vim-snippets",
+				config = function()
+					require("luasnip.loaders.from_snipmate").lazy_load()
+				end,
+			},
 			{
 				"rafamadriz/friendly-snippets",
 				config = function()
