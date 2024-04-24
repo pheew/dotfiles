@@ -18,7 +18,7 @@ return {
             }
         },
         opts = {
-            formatters_by_opts = {
+            formatters_by_ft = {
                 shell = { { "shfmt" } },
                 lua = { "stylua" },
                 javascript = { { "prettierd", "prettier" } },
