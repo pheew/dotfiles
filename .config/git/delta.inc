@@ -11,6 +11,7 @@
 	features = decorations
 	syntax-theme = Solarized (light)
 	side-by-side = true
+	tabs = 4
 
 [delta "interactive"]
     keep-plus-minus-markers = false
