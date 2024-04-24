@@ -7,15 +7,20 @@ return {
         lazy = false,
         keys = {
             {
-                "<leader>br",
+                "<leader>gr",
                 ":GBrowse!",
                 mode = { 'n', 'v' },
                 desc = "Browse repo"
             },
             {
-                "<leader>g",
+                "<leader>gs",
                 ":G<CR>",
                 desc = "Open Git summary"
+            },
+            {
+                "<leader>gb",
+                ":Git blame<CR>",
+                desc = "Git blame"
             }
         }
     },
