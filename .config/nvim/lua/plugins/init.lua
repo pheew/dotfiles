@@ -1,6 +1,4 @@
 return {
-    -- Filetype
-    "nathom/filetype.nvim",
     -- session manager
     -- {
     --     "jedrzejboczar/possession.nvim",
