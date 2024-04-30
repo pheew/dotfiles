@@ -20,6 +20,7 @@ return {
         opts = {
             formatters_by_ft = {
                 shell = { { "shfmt" } },
+                sh = { { "shfmt" } },
                 lua = { "stylua" },
                 javascript = { { "prettierd", "prettier" } },
                 javascriptreact = { { "prettierd", "prettier" } },
