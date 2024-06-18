@@ -1,15 +1,28 @@
 return {
 	-- Theme
 	{
-		"lifepillar/vim-solarized8",
-		init = function()
-			vim.g.solarized_diffmode = "high"
-			vim.cmd([[
-                    autocmd vimenter * ++nested colorscheme solarized8
-                    colorscheme solarized8
-            ]])
+		"Tsuzat/NeoSolarized.nvim",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		opts = {
+			transparent = false,
+		},
+		config = function(opts)
+			vim.cmd([[ colorscheme NeoSolarized ]])
+
+			return opts
 		end,
 	},
+	-- {
+	-- 	"lifepillar/vim-solarized8",
+	-- 	init = function()
+	-- 		vim.g.solarized_diffmode = "high"
+	-- 		vim.cmd([[
+	--                    autocmd vimenter * ++nested colorscheme solarized8
+	--                    colorscheme solarized8
+	--            ]])
+	-- 	end,
+	-- },
 	-- File explorer
 	{
 		"lambdalisue/fern.vim",
