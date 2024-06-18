@@ -19,7 +19,7 @@ return {
 			"lambdalisue/nerdfont.vim",
 			"lambdalisue/fern-renderer-nerdfont.vim",
 			"lambdalisue/fern-hijack.vim",
-			"yuki-yano/fern-preview.vim"
+			"yuki-yano/fern-preview.vim",
 		},
 		keys = {
 			{
@@ -31,23 +31,22 @@ return {
 		},
 		init = function()
 			vim.cmd([[
+				let g:fern#renderer = "nerdfont"
+				let g:fern#default_hidden = 1
 
-                let g:fern#renderer = "nerdfont"
-                let g:fern#default_hidden = 1
+				function! s:init_fern() abort
+				  nmap <buffer> <C-n> <Plug>(fern-action-new-path)
+				  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+				  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+				  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+				  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+				endfunction
 
-                function! s:init_fern() abort
-                  nmap <buffer> <C-n> <Plug>(fern-action-new-path)
-		  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-		  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-		  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-		  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
-                endfunction
-
-                augroup fern-custom
-                  autocmd! *
-                  autocmd FileType fern call s:init_fern()
-                augroup END
-            ]])
+				augroup fern-custom
+				  autocmd! *
+				  autocmd FileType fern call s:init_fern()
+				augroup END
+			    ]])
 		end,
 	},
 	-- Improve built-in vim UI
@@ -76,7 +75,7 @@ return {
 	{
 		"simrat39/symbols-outline.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
-		opts = {}
+		opts = {},
 	},
 	-- Adds status line and tab line
 	{
