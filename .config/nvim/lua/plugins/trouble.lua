@@ -2,13 +2,14 @@ return {
     -- Trouble
     {
         "folke/trouble.nvim",
-        cmd = { "TroubleToggle", "Trouble" },
+        cmd = { "Trouble" },
         dependencies = "kyazdani42/nvim-web-devicons",
+        opts = {},
         keys = {
             {
                 -- Show Trouble screen
                 "<leader>t",
-                "<cmd>TroubleToggle document_diagnostics<CR>"
+                "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<CR>"
             },
             {
                 "[q",
