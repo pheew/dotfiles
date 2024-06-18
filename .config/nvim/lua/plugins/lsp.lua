@@ -1,25 +1,63 @@
 -- Adds Language Server Protocol config
+
+local border = "rounded"
+
 return {
+	{ -- Better lua neovim API support
+		"folke/lazydev.nvim",
+		dependencies = {
+			{ "Bilal2453/luvit-meta", lazy = true },
+		},
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	-- Useful status updates for LSP
+	-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+	{
+		"j-hui/fidget.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+		branch = "main",
+		opts = {
+			notification = {
+				window = {
+					border = border,
+					winblend = 0, -- Background color opacity in the notification window
+				},
+			},
+		},
+	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"hrsh7th/nvim-cmp",
+
 			"b0o/schemastore.nvim",
+
 			-- Automatically install LSPs to stdpath for neovim
 			{ "williamboman/mason.nvim", config = true },
 			"williamboman/mason-lspconfig.nvim",
-			-- Useful status updates for LSP
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
-			-- Additional lua configuration, makes nvim stuff amazing!
-			"folke/neodev.nvim",
 		},
 		config = function()
-			require("neodev").setup({})
-			local buf_option = vim.api.nvim_buf_set_option
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = border,
+			})
 
-			-- local lspconfig = require "lspconfig"
-			--
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = border,
+			})
+
+			vim.diagnostic.config({
+				float = { border = border },
+			})
+
 			local servers = {
 				-- clangd = {},
 				-- gopls = {},
@@ -55,7 +93,7 @@ return {
 			})
 
 			local on_attach = function(_, bufnr)
-				buf_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+				vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
 				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr })
@@ -86,108 +124,6 @@ return {
 					})
 				end,
 			})
-
-			-- local opts = {noremap = true, silent = true}
-			-- vim.api.nvim_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-			-- vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-			-- vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-			-- vim.api.nvim_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-			--
-			-- vim.diagnostic.config {
-			--     virtual_text = false,
-			--     severity_sort = true,
-			--     float = {
-			--         source = true,
-			--         focus = false,
-			--         format = function(diagnostic)
-			--             if diagnostic.user_data ~= nil and diagnostic.user_data.lsp.code ~= nil then
-			--                 return string.format("%s: %s", diagnostic.user_data.lsp.code, diagnostic.message)
-			--             end
-			--             return diagnostic.message
-			--         end
-			--     }
-			-- }
-
-			-- nvim-cmp supports additional completion capabilities
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			-- local noConfigServers = {"bashls", "dockerls", "tsserver", "cssls", "graphql"}
-
-			-- for _, lsp in ipairs(noConfigServers) do
-			--     lspconfig[lsp].setup {
-			--         on_attach = on_attach,
-			--         capabilities = capabilities,
-			--         flags = {
-			--             debounce_text_changes = 150
-			--         }
-			--     }
-			-- end
-
-			-- lspconfig.yamlls.setup {
-			--     on_attach = on_attach,
-			--     capabilities = capabilities,
-			--     flags = {
-			--         debounce_text_changes = 150
-			--     },
-			--     settings = {
-			--         yaml = {}
-			--     }
-			-- }
-			--
-			-- lspconfig.eslint.setup {
-			--     on_attach = on_attach,
-			--     capabilities = capabilities,
-			--     flags = {
-			--         debounce_text_changes = 150
-			--     },
-			--     handlers = {
-			--         ["window/showMessageRequest"] = function(_, result, _)
-			--             return result
-			--         end
-			--     }
-			-- }
-			--
-			-- lspconfig.jsonls.setup {
-			--     on_attach = on_attach,
-			--     capabilities = capabilities,
-			--     flags = {
-			--         debounce_text_changes = 150
-			--     },
-			--     settings = {
-			--         json = {
-			--             schemas = require("schemastore").json.schemas()
-			--         }
-			--     }
-			-- }
-
-			-- local runtime_path = vim.split(package.path, ";")
-			-- table.insert(runtime_path, "lua/?.lua")
-			-- table.insert(runtime_path, "lua/?/init.lua")
-			--
-			-- lspconfig.lua_ls.setup {
-			--     on_attach = on_attach,
-			--     capabilities = capabilities,
-			--     settings = {
-			--         Lua = {
-			--             runtime = {
-			--                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-			--                 version = "LuaJIT"
-			--             },
-			--             diagnostics = {
-			--                 -- Get the language server to recognize the `vim` global
-			--                 globals = {"vim"}
-			--             },
-			--             workspace = {
-			--                 -- Make the server aware of Neovim runtime files
-			--                 library = vim.api.nvim_get_runtime_file("", true)
-			--             },
-			--             -- Do not send telemetry data containing a randomized but unique identifier
-			--             telemetry = {
-			--                 enable = false
-			--             }
-			--         }
-			--     }
-			-- }
 		end,
 	},
 }

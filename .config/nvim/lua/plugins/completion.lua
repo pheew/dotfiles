@@ -79,6 +79,7 @@ return {
 					end, { "i", "s" }),
 				},
 				sources = {
+					{ name = "lazydev" },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lua" },
