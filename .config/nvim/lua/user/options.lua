@@ -30,18 +30,6 @@ vim.o.updatetime = 300
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
--- " Don't pass messages to |ins-completion-menu|.
--- set shortmess+=c
-
---" Always show the signcolumn, otherwise it would shift the text each time
---" diagnostics appear/become resolved.
---if has("patch-8.1.1564")
---  " Recently vim can merge signcolumn and number column into one
---  set signcolumn=number
---else
---  set signcolumn=yes
---endif
-
 vim.g.mapleader = " "
 
 vim.do_filetype_lua = 1
