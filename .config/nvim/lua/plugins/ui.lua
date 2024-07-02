@@ -7,10 +7,10 @@ return {
 		opts = {
 			transparent = false,
 		},
-		config = function(opts)
+		config = function(_, opts)
 			vim.cmd([[ colorscheme NeoSolarized ]])
 
-			return opts
+			require("NeoSolarized").setup(opts)
 		end,
 	},
 	-- {
@@ -23,6 +23,7 @@ return {
 	--            ]])
 	-- 	end,
 	-- },
+
 	-- File explorer
 	{
 		"lambdalisue/fern.vim",
@@ -62,6 +63,7 @@ return {
 			    ]])
 		end,
 	},
+
 	-- Improve built-in vim UI
 	{
 		"stevearc/dressing.nvim",
@@ -84,21 +86,19 @@ return {
 			end
 		end,
 	},
-	-- Nice code outline for current buffer
-	{
-		"simrat39/symbols-outline.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		opts = {},
-	},
+
 	-- Adds status line and tab line
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+		dependencies =  {
+			{ "kyazdani42/nvim-web-devicons", opt = true },
+			"Tsuzat/NeoSolarized.nvim"
+		},
 		opts = function()
 			return {
 				options = {
-					theme = "solarized_light",
+					theme = "NeoSolarized",
 					disabled_filetypes = { "fern", "alpha", "Outline" },
 				},
 				sections = {
@@ -123,6 +123,7 @@ return {
 			}
 		end,
 	},
+
 	-- greeter
 	{
 		"goolord/alpha-nvim",

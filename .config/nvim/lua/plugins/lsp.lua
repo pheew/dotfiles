@@ -1,6 +1,6 @@
 -- Adds Language Server Protocol config
 
-local border = "rounded"
+local border = "none"
 
 return {
 	{ -- Better lua neovim API support
@@ -29,7 +29,7 @@ return {
 			notification = {
 				window = {
 					border = border,
-					winblend = 0, -- Background color opacity in the notification window
+					winblend = 50, -- Background color opacity in the notification window
 				},
 			},
 		},

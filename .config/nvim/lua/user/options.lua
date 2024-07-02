@@ -2,7 +2,7 @@ vim.o.termguicolors = true
 
 -- syntax enable
 
-vim.o.background = "light"
+-- vim.o.background = "light"
 
 -- " colorscheme solarized8
 -- autocmd vimenter * ++nested colorscheme solarized8
@@ -18,7 +18,7 @@ vim.o.scrolloff = 8 -- keeps some cursor context when scrolling
 -- set hidden
 
 vim.o.backup = true
-vim.o.backupdir = vim.fn.stdpath "data" .. "/backup//"
+vim.o.backupdir = vim.fn.stdpath("data") .. "/backup//"
 
 -- " Give more space for displaying messages.
 -- set cmdheight=2
