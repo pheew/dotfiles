@@ -91,9 +91,9 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		dependencies =  {
+		dependencies = {
 			{ "kyazdani42/nvim-web-devicons", opt = true },
-			"Tsuzat/NeoSolarized.nvim"
+			"Tsuzat/NeoSolarized.nvim",
 		},
 		opts = function()
 			return {
@@ -132,5 +132,18 @@ return {
 		config = function()
 			require("alpha").setup(require("alpha.themes.startify").config)
 		end,
+	},
+
+	-- Nice symbol outline
+	{
+		"hedyhli/outline.nvim",
+		lazy = true,
+		cmd = { "Outline", "OutlineOpen" },
+		keys = { -- Example mapping to toggle outline
+			{ "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+		},
+		opts = {
+			-- Your setup opts here
+		},
 	},
 }

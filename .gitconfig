@@ -7,7 +7,7 @@
 	default = current
 
 [commit]
-	gpgsign = true
+	gpgsign = false
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg
 [rerere]
@@ -33,3 +33,9 @@
 
 [merge]
 	tool = nvim
+[maintenance]
+	repo = /Users/niek/projects/grandvision/gv-core-components
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

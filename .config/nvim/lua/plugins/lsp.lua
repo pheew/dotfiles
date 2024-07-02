@@ -45,6 +45,23 @@ return {
 			{ "williamboman/mason.nvim", config = true },
 			"williamboman/mason-lspconfig.nvim",
 		},
+		keys = {
+			{
+				"<leader>lr",
+				"<cmd>LspRestart<CR>",
+				desc = "Restart LSP Server",
+				noremap = true,
+				silent = true,
+			},
+
+			{
+				"<leader>li",
+				"<cmd>LspInfo<CR>",
+				desc = "LSP Server Info",
+				noremap = true,
+				silent = true,
+			},
+		},
 		config = function()
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 				border = border,
@@ -108,7 +125,6 @@ return {
 				vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<leader>os", ":SymbolsOutline<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "<leader>of", ":Telescope lsp_document_symbols<CR>", { buffer = bufnr })
 
 				vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
