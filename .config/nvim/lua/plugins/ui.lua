@@ -95,7 +95,18 @@ return {
 				enabled = true, -- enables the Noice cmdline UI
 				view = "cmdline",
 			},
+			messages = {
+				view = "mini",
+				view_error = "mini",
+				view_warn = "mini",
+			},
+			notify = {
+				view = "mini"
+			},
 			lsp = {
+				progress = {
+					enabled = false,
+				},
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
