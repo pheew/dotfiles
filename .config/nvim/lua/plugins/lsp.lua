@@ -1,6 +1,6 @@
 -- Adds Language Server Protocol config
 
-local border = "none"
+local border = "rounded"
 
 return {
 	{ -- Better lua neovim API support
@@ -18,27 +18,25 @@ return {
 		},
 	},
 	-- Useful status updates for LSP
-	-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-	{
-		"j-hui/fidget.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
-		branch = "main",
-		opts = {
-			notification = {
-				window = {
-					border = border,
-					winblend = 50, -- Background color opacity in the notification window
-				},
-			},
-		},
-	},
+	-- {
+	-- 	"j-hui/fidget.nvim",
+	-- 	dependencies = {
+	-- 		"neovim/nvim-lspconfig",
+	-- 	},
+	-- 	branch = "main",
+	-- 	opts = {
+	-- 		notification = {
+	-- 			window = {
+	-- 				border = border,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"hrsh7th/nvim-cmp",
-
 			"b0o/schemastore.nvim",
 
 			-- Automatically install LSPs to stdpath for neovim
@@ -63,14 +61,6 @@ return {
 			},
 		},
 		config = function()
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = border,
-			})
-
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = border,
-			})
-
 			vim.diagnostic.config({
 				float = { border = border },
 			})
