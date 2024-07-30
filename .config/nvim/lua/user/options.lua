@@ -2,7 +2,7 @@ vim.o.termguicolors = true
 
 -- syntax enable
 
--- vim.o.background = "light"
+vim.o.background = "light"
 
 -- " colorscheme solarized8
 -- autocmd vimenter * ++nested colorscheme solarized8

@@ -8,7 +8,10 @@ return {
 			transparent = false,
 		},
 		config = function(_, opts)
-			vim.cmd([[ colorscheme NeoSolarized ]])
+			vim.cmd([[
+				colorscheme NeoSolarized
+				autocmd vimenter * ++nested colorscheme NeoSolarized
+			]])
 
 			require("NeoSolarized").setup(opts)
 		end,
