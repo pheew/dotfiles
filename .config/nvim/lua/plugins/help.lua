@@ -2,6 +2,7 @@ return {
 	-- Adds searchable cheatsheet
 	{
 		"sudormrfbin/cheatsheet.nvim",
+		cmd = "Cheatsheet",
 		dependencies = {
 			{ "nvim-telescope/telescope.nvim" },
 		},
