@@ -18,6 +18,10 @@ return {
 		end,
 		opts = {
 			preset = "helix",
+			spec = {
+				{ "<leader>g", group = "git" },
+				{ "<leader>q", group = "session" },
+			},
 		},
 	},
 }
