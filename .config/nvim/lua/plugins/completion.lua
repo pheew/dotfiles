@@ -86,7 +86,6 @@ return {
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
-					-- { name = 'fuzzy_path' },
 				},
 			}
 		end,

@@ -16,20 +16,10 @@ return {
 			]])
 		end,
 	},
-	-- {
-	-- 	"lifepillar/vim-solarized8",
-	-- 	init = function()
-	-- 		vim.g.solarized_diffmode = "high"
-	-- 		vim.cmd([[
-	--                    autocmd vimenter * ++nested colorscheme solarized8
-	--                    colorscheme solarized8
-	--            ]])
-	-- 	end,
-	-- },
 
 	-- File explorer
 	{
-		"lambdalisue/fern.vim",
+		"lambdalisue/vim-fern",
 		branch = "main",
 		cmd = "Fern",
 		dependencies = {
@@ -44,6 +34,7 @@ return {
 				"<leader>n",
 				"<cmd>Fern . -reveal=% -wait<CR>",
 				silent = true,
+				desc = "Open file explorer",
 			},
 		},
 		init = function()

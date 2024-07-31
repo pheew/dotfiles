@@ -102,22 +102,55 @@ return {
 			local on_attach = function(_, bufnr)
 				vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
-				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr })
+				vim.keymap.set(
+					"n",
+					"gD",
+					"<cmd>lua vim.lsp.buf.declaration()<CR>",
+					{ buffer = bufnr, desc = "Go to Declaration" }
+				)
+				vim.keymap.set(
+					"n",
+					"gd",
+					"<cmd>lua vim.lsp.buf.definition()<CR>",
+					{ buffer = bufnr, desc = "Go to Definition" }
+				)
 				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = bufnr })
+				vim.keymap.set(
+					"n",
+					"gi",
+					"<cmd>lua vim.lsp.buf.implementation()<CR>",
+					{ buffer = bufnr, desc = "Go to Implementation" }
+				)
 				vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
-				vim.keymap.set("v", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<leader>of", ":Telescope lsp_document_symbols<CR>", { buffer = bufnr })
-
-				vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+				vim.keymap.set(
+					"n",
+					"<leader>D",
+					"<cmd>lua vim.lsp.buf.type_definition()<CR>",
+					{ buffer = bufnr, desc = "Show type definition" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>rn",
+					"<cmd>lua vim.lsp.buf.rename()<CR>",
+					{ buffer = bufnr, desc = "Rename symbol" }
+				)
+				vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>", { buffer = bufnr, "Go to references" })
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ra",
+					"<cmd>lua vim.lsp.buf.code_action()<CR>",
+					{ buffer = bufnr, desc = "Code Actions" }
+				)
+				-- Disabled because I'm using trouble.nvim for this
+				-- vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { buffer = bufnr })
+				-- vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { buffer = bufnr })
+				-- vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { buffer = bufnr })
+				vim.keymap.set(
+					"n",
+					"<leader>of",
+					":FzfLua lsp_document_symbols<CR>",
+					{ buffer = bufnr, desc = "Jump to document symbol" }
+				)
 			end
 
 			mason_lspconfig.setup_handlers({
