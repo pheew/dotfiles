@@ -62,9 +62,7 @@ return {
 	-- color highlighting
 	{
 		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
+		opts = {},
 	},
 	-- Comments
 	{

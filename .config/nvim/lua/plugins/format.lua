@@ -12,7 +12,7 @@ return {
 				function()
 					require("conform").format({ async = true, lsp_fallback = true })
 				end,
-				desc = "Format file",
+				desc = "format buffer",
 				noremap = true,
 				silent = true,
 			},
