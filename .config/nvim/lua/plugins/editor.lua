@@ -10,6 +10,9 @@ return {
 		cmd = "FzfLua",
 		opts = {
 			"fzf-tmux",
+			winopts = {
+				backdrop = false,
+			},
 			fzf_opts = {
 				["--layout"] = "default",
 			},
@@ -41,7 +44,7 @@ return {
 				desc = "Builtin lists",
 			},
 			{
-				"<leader>r",
+				"<leader>lr",
 				"<cmd>FzfLua resume<CR>",
 				desc = "Resume FzfLua",
 			},
@@ -52,10 +55,27 @@ return {
 	{
 		"nvim-pack/nvim-spectre",
 		cmd = "Spectre",
-		opts = { open_cmd = "noswapfile vnew" },
-		-- stylua: ignore
+		opts = {
+			open_cmd = "noswapfile vnew",
+			replace_engine = {
+				["sed"] = {
+					cmd = "sed",
+					args = {
+						"-i",
+						"",
+						"-E",
+					},
+				},
+			},
+		},
 		keys = {
-		    { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+			{
+				"<leader>sr",
+				function()
+					require("spectre").toggle()
+				end,
+				desc = "Replace in files (Spectre)",
+			},
 		},
 	},
 

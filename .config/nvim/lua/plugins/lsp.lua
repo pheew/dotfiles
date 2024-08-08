@@ -102,30 +102,25 @@ return {
 			local on_attach = function(_, bufnr)
 				vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
-				vim.keymap.set(
-					"n",
-					"gD",
-					"<cmd>lua vim.lsp.buf.declaration()<CR>",
-					{ buffer = bufnr, desc = "Go to Declaration" }
-				)
+				vim.keymap.set("n", "gD", "<cmd>FzfLua lsp_declarations<CR>", { buffer = bufnr, desc = "Go to Declaration" })
 				vim.keymap.set(
 					"n",
 					"gd",
-					"<cmd>lua vim.lsp.buf.definition()<CR>",
+					"<cmd>FzfLua lsp_definitions jump_to_single_result=true<CR>",
 					{ buffer = bufnr, desc = "Go to Definition" }
 				)
 				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
 				vim.keymap.set(
 					"n",
 					"gi",
-					"<cmd>lua vim.lsp.buf.implementation()<CR>",
+					"<cmd>FzfLua lsp_implementations<CR>",
 					{ buffer = bufnr, desc = "Go to Implementation" }
 				)
 				vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr })
 				vim.keymap.set(
 					"n",
 					"<leader>D",
-					"<cmd>lua vim.lsp.buf.type_definition()<CR>",
+					"<cmd>FzfLua lsp_typedefs<CR>",
 					{ buffer = bufnr, desc = "Show type definition" }
 				)
 				vim.keymap.set(
@@ -134,7 +129,7 @@ return {
 					"<cmd>lua vim.lsp.buf.rename()<CR>",
 					{ buffer = bufnr, desc = "Rename symbol" }
 				)
-				vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>", { buffer = bufnr, "Go to references" })
+				vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>", { buffer = bufnr, desc = "Go to references" })
 				vim.keymap.set(
 					{ "n", "v" },
 					"<leader>ra",
@@ -148,7 +143,7 @@ return {
 				vim.keymap.set(
 					"n",
 					"<leader>of",
-					":FzfLua lsp_document_symbols<CR>",
+					"<cmd>FzfLua lsp_document_symbols<CR>",
 					{ buffer = bufnr, desc = "Jump to document symbol" }
 				)
 			end
