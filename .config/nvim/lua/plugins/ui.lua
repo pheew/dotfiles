@@ -58,6 +58,42 @@ return {
 		end,
 	},
 
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		cmd = "Neotree",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+		},
+	},
+
+	{
+		"stevearc/oil.nvim",
+		opts = {
+			keymaps = {
+				["l"] = { "actions.select", mode = "n" },
+				["h"] = { "actions.parent", mode = "n" },
+				["q"] = { "actions.close", mode = "n" },
+			},
+			float = {
+				preview_split = "right",
+			},
+		},
+		keys = {
+			{
+				"<leader>e",
+				"<CMD>Oil --float<CR>",
+				desc = "Open parent directory in oil.vnim",
+			},
+		},
+		-- Optional dependencies
+		-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+	},
+
 	-- Improve built-in vim UI
 	{
 		"stevearc/dressing.nvim",
