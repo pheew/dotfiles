@@ -48,6 +48,11 @@ return {
 				"<cmd>FzfLua resume<CR>",
 				desc = "Resume FzfLua",
 			},
+			{
+				"<leader>?",
+				"<cmd>FzfLua helptags<CR>",
+				desc = "Search help tags",
+			},
 		},
 	},
 
