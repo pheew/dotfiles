@@ -40,7 +40,7 @@ return {
 			"b0o/schemastore.nvim",
 
 			-- Automatically install LSPs to stdpath for neovim
-			{ "williamboman/mason.nvim", config = true },
+			{ "williamboman/mason.nvim", config = true, cmd = "Mason" },
 			"williamboman/mason-lspconfig.nvim",
 		},
 		keys = {
