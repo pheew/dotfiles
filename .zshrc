@@ -85,13 +85,15 @@ if command_exists system-ctl; then
 fi
 
 if_exists yum
-if_exists fzf
 if_exists pacman archlinux
 if_exists apt-get debian
-if_exists fd
-if command_exists rg; then
-        export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
-        plugins+=(ripgrep)
+
+if command_exists fzf; then
+        plugins+=(fzf)
+        export FZF_CTRL_T_OPTS="
+                  --walker-skip .git,node_modules,target
+                  --preview 'bat -n --color=always {}'
+                  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 fi
 
 if command_exists docker; then
