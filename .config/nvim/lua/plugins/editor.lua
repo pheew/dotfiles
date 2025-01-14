@@ -12,6 +12,10 @@ return {
 			"fzf-tmux",
 			winopts = {
 				backdrop = false,
+				preview = {
+					border = "border-left",
+					default = "bat",
+				},
 			},
 			fzf_opts = {
 				["--layout"] = "default",
@@ -89,6 +93,7 @@ return {
 		"norcalli/nvim-colorizer.lua",
 		opts = {},
 	},
+
 	-- Comments
 	{
 		"numToStr/Comment.nvim",
