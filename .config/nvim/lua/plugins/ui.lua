@@ -45,7 +45,6 @@ return {
 				function! s:init_fern() abort
 				  nmap <buffer> <C-n> <Plug>(fern-action-new-path)
 				  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-				  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
 				  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
 				  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
 				endfunction
@@ -73,6 +72,9 @@ return {
 	{
 		"stevearc/oil.nvim",
 		opts = {
+			win_options = {
+				wrap = false,
+			},
 			keymaps = {
 				["l"] = { "actions.select", mode = "n" },
 				["h"] = { "actions.parent", mode = "n" },
@@ -80,6 +82,7 @@ return {
 			},
 			float = {
 				preview_split = "right",
+				win_options = {},
 			},
 		},
 		keys = {

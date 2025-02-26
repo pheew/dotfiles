@@ -47,6 +47,11 @@ return {
 				":Git blame<CR>",
 				desc = "Git blame",
 			},
+			{
+				"<leader>G",
+				":Git<CR>",
+				desc = "Open Git status window",
+			},
 		},
 	},
 	{

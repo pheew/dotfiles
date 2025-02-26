@@ -12,7 +12,7 @@ return {
 	},
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "typescript", "lua", "go", "javascript", "html", "yaml", "json" },
+			ensure_installed = { "typescript", "lua", "go", "javascript", "html", "yaml", "json", "css", "scss" },
 			indent = {
 				enable = { "lua", "html", "blade" },
 			},
