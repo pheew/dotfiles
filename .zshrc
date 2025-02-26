@@ -29,8 +29,6 @@ plugins=(
         node-custom
         vi-mode
         nextjs-custom
-        fzf
-        fzf-solarized
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -89,11 +87,12 @@ if_exists pacman archlinux
 if_exists apt-get debian
 
 if command_exists fzf; then
-        plugins+=(fzf)
+        plugins+=(fzf fzf-custom)
         export FZF_CTRL_T_OPTS="
                   --walker-skip .git,node_modules,target
                   --preview 'bat -n --color=always {}'
                   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
 fi
 
 if command_exists docker; then
