@@ -30,6 +30,12 @@
 !.config/git
 !.config/ripgrep
 
+!.config/fish
+.config/fish/fish_variables
+.config/fish/conf.d/secrets.fish
+
 !.ideavimrc
 
 .DS_Store
+
+**/secrets.*
