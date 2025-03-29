@@ -20,6 +20,16 @@
 	fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
 	blame = "git blame -w -C -C -C"
 
+	# log, current branch
+	l  = log --pretty=lc --graph
+	lo = log --pretty=lo --graph --date=human
+
+[format]
+	pretty = lo
+
+[pretty]
+	lo  = tformat:%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+
 [include]
 	path=.config/git/delta.inc
 	path=.config/git/vim.inc
