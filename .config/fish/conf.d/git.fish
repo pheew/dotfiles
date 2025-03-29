@@ -14,6 +14,9 @@ if status is-interactive
     # pull
     abbr --add gpr git pull --rebase
 
+    # push
+    abbr --add gp git push
+
     # add
     abbr --add ga git add
     abbr --add gapa git add --patch
