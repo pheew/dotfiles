@@ -70,6 +70,7 @@ return {
 				-- gopls = {},
 				-- pyright = {},
 				-- rust_analyzer = {},
+				fish_lsp = {},
 				azure_pipelines_ls = {},
 				eslint = {},
 				jsonls = {},
