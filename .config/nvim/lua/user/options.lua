@@ -32,5 +32,5 @@ vim.o.timeoutlen = 300
 
 vim.g.mapleader = " "
 
-vim.do_filetype_lua = 1
+--vim.do_filetype_lua = 1
 --vim.g.did_load_filetypes = 0
