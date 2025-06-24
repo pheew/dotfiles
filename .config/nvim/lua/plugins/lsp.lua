@@ -32,16 +32,17 @@ return {
 	-- 		},
 	-- 	},
 	-- },
+	{ "williamboman/mason.nvim", config = true, cmd = "Mason" },
 	{
 		"neovim/nvim-lspconfig",
-		-- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 			"b0o/schemastore.nvim",
 
 			-- Automatically install LSPs to stdpath for neovim
-			{ "williamboman/mason.nvim", config = true, cmd = "Mason" },
 			{ "williamboman/mason-lspconfig.nvim", config = {} },
+			"williamboman/mason.nvim",
 		},
 		keys = {
 			{
@@ -70,7 +71,7 @@ return {
 				-- gopls = {},
 				-- pyright = {},
 				-- rust_analyzer = {},
-				--fish_lsp = {},
+				fish_lsp = {},
 				azure_pipelines_ls = {},
 				eslint = {},
 				jsonls = {},
