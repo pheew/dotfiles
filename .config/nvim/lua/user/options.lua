@@ -34,3 +34,6 @@ vim.g.mapleader = " "
 
 --vim.do_filetype_lua = 1
 --vim.g.did_load_filetypes = 0
+--
+
+vim.diagnostic.config({ virtual_text = true })

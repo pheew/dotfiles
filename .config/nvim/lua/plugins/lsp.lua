@@ -67,27 +67,18 @@ return {
 			})
 
 			local servers = {
-				-- clangd = {},
-				-- gopls = {},
-				-- pyright = {},
-				-- rust_analyzer = {},
-				fish_lsp = {},
-				azure_pipelines_ls = {},
-				eslint = {},
-				jsonls = {},
-				bashls = {},
-				dockerls = {},
-				ts_ls = {},
-				html = { filetypes = { "html", "twig", "hbs" } },
+				"fish_lsp",
+				"azure_pipelines_ls",
+				"eslint",
+				"jsonls",
+				"bashls",
+				"dockerls",
+				"ts_ls",
+				"html",
 				-- react = {},
-				cssls = {},
-				graphql = {},
-				lua_ls = {
-					Lua = {
-						workspace = { checkThirdParty = false },
-						telemetry = { enable = false },
-					},
-				},
+				"cssls",
+				"graphql",
+				"lua_ls",
 			}
 
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -98,8 +89,12 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 
 			mason_lspconfig.setup({
-				ensure_installed = vim.tbl_keys(servers),
+				ensure_installed = servers,
 				automatic_enable = true,
+			})
+
+			vim.lsp.config("*", {
+				capabilities = capabilities,
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -161,17 +156,6 @@ return {
 					)
 				end,
 			})
-
-			-- mason_lspconfig.setup_handlers({
-			-- 	function(server_name)
-			-- 		require("lspconfig")[server_name].setup({
-			-- 			capabilities = capabilities,
-			-- 			on_attach = on_attach,
-			-- 			settings = servers[server_name],
-			-- 			filetypes = (servers[server_name] or {}).filetypes,
-			-- 		})
-			-- 	end,
-			-- })
 		end,
 	},
 }

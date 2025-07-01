@@ -17,6 +17,7 @@ return {
 		end,
 	},
 
+	{ "lambdalisue/fern-hijack.vim" },
 	-- File explorer
 	{
 		"lambdalisue/vim-fern",

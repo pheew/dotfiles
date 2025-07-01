@@ -9,7 +9,7 @@ return {
 			{
 				-- Show Trouble screen
 				"<leader>t",
-				"<cmd>Trouble diagnostics toggle focus=false filter.buf=0<CR>",
+				"<cmd>Trouble diagnostics toggle focus=true filter.buf=0<CR>",
 				{ desc = "Show LSP Problems" },
 			},
 			{
