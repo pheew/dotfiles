@@ -99,22 +99,46 @@ return {
 	},
 
 	-- Improve built-in vim UI
+	-- {
+	-- 	"stevearc/dressing.nvim",
+	-- 	lazy = true,
+	-- 	opts = {},
+	-- 	init = function()
+	-- 		---@diagnostic disable-next-line: duplicate-set-field
+	-- 		vim.ui.select = function(...)
+	-- 			require("lazy").load({ plugins = { "dressing.nvim" } })
+	-- 			return vim.ui.select(...)
+	-- 		end
+	-- 		---@diagnostic disable-next-line: duplicate-set-field
+	-- 		vim.ui.input = function(...)
+	-- 			require("lazy").load({ plugins = { "dressing.nvim" } })
+	-- 			return vim.ui.input(...)
+	-- 		end
+	-- 	end,
+	-- },
+
 	{
-		"stevearc/dressing.nvim",
-		lazy = true,
-		opts = {},
-		init = function()
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.select = function(...)
-				require("lazy").load({ plugins = { "dressing.nvim" } })
-				return vim.ui.select(...)
-			end
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.input = function(...)
-				require("lazy").load({ plugins = { "dressing.nvim" } })
-				return vim.ui.input(...)
-			end
-		end,
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			-- dashboard = { enabled = true },
+			-- explorer = { enabled = true },
+			-- indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = true },
+			words = { enabled = true },
+		},
 	},
 
 	{
@@ -173,12 +197,22 @@ return {
 				options = {
 					theme = "NeoSolarized",
 					disabled_filetypes = { "fern", "alpha", "Outline" },
+					-- component_separators = { left = " ", right = " " },
+					-- section_separators = { left = '', right = ''},
+				},
+				extensions = {
+					"fern",
+					"fzf",
+					"fugitive",
+					"lazy",
+					"oil",
+					"trouble",
 				},
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diagnostics" },
 					lualine_c = { "filename" },
-					lualine_x = { "encoding", "filetype" },
+					lualine_x = { "encoding", "filetype", "lsp_status" },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
 				},
