@@ -39,3 +39,5 @@
 .DS_Store
 
 **/secrets.*
+
+!Agents.md

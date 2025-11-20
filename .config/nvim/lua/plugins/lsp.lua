@@ -104,7 +104,7 @@ return {
 					-- Unset 'omnifunc'
 					vim.bo[args.buf].omnifunc = nil
 					-- Unmap K
-					vim.keymap.del("n", "K", { buffer = args.buf })
+					-- vim.keymap.del("n", "K", { buffer = args.buf })
 
 					local bufnr = args.buf
 

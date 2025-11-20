@@ -5,16 +5,30 @@ return {
 		event = { "BufWritePre" },
 		dependencies = { "mason.nvim" },
 		lazy = true,
-		cmd = "ConformInfo",
+		cmd = { "ConformInfo", "Format" },
+		config = function(opts)
+			-- https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#format-command
+			vim.api.nvim_create_user_command("Format", function(args)
+				local range = nil
+				if args.count ~= -1 then
+					local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+					range = {
+						start = { args.line1, 0 },
+						["end"] = { args.line2, end_line:len() },
+					}
+				end
+				require("conform").format({ async = true, lsp_format = "fallback", range = range })
+			end, { range = true })
+
+			require("conform").setup(opts)
+		end,
 		keys = {
 			{
 				"<leader>f",
-				function()
-					require("conform").format({ async = true, lsp_fallback = true })
-				end,
+				"<cmd>Format<CR>",
 				desc = "format buffer",
 				noremap = true,
-				silent = true,
+				silent = false,
 			},
 		},
 		---@module "conform"
@@ -38,7 +52,7 @@ return {
 				scss = { "prettierd", "prettier" },
 				less = { "prettierd", "prettier" },
 				html = { "prettierd", "prettier" },
-				json = { "prettierd", "prettier" },
+				json = { "prettierd", "prettier", "jq" },
 				jsonc = { "prettierd", "prettier" },
 				yaml = { "prettierd", "prettier" },
 				markdown = { "prettierd", "prettier" },
