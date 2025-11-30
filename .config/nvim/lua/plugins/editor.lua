@@ -24,7 +24,7 @@ return {
 		keys = {
 			{
 				"<C-p>",
-				"<cmd>FzfLua git_files<CR>",
+				"<cmd>FzfLua files<CR>",
 				desc = "Find file in project",
 			},
 			{

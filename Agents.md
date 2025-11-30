@@ -22,3 +22,4 @@ When the git repository is using Git:
 - Don't change any authentication methods. The CLI tools should already be authenticated. If not, don't try to fix it. Let a human fix it.
 - Use the Github CLI tool to communicate with Github (gh cli). Again, assume it's authenticated. If not, let a human fix it.
 
+When working with JSON data use jq over anything else.
