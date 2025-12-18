@@ -36,6 +36,12 @@
 
 !.ideavimrc
 
+# claude
+!.claude
+.claude/*
+!.claude/settings.json
+!.claude/commands/
+
 .DS_Store
 
 **/secrets.*

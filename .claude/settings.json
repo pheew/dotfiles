@@ -1,0 +1,67 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(yarn build)",
+      "Bash(yarn install)",
+      "Bash(gh pr)",
+      "Bash(git fetch)",
+      "Bash(cat:*)",
+      "WebFetch(domain:turborepo.com)",
+      "Bash(yarn turbo:ci:*)",
+      "Bash(yarn lint-js:*)",
+      "Bash(yarn workspace @grandvisionhq/stores-v2 test:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(yarn test:*)",
+      "Bash(yarn ./packages/products test:*)",
+      "Bash(yarn ./x-functional-domains/click-and-reserve test:*)",
+      "Bash(yarn ./packages/layout test:*)",
+      "Bash(yarn ./packages/search test:*)",
+      "Bash(yarn:*)",
+      "Bash(yarn workspace:*)"
+    ],
+    "deny": [
+      "Read(/Users/niek/.ssh/**)",
+      "Read(/Users/niek/.gnupg/**)",
+      "Read(/Users/niek/.gnupg_pre_2.1/**)",
+      "Read(/Users/niek/.secrets.sh)",
+      "Read(/Users/niek/.vault-token)",
+      "Read(/Users/niek/.npmrc)",
+      "Read(/Users/niek/**/secrets.*)",
+      "Read(/Users/niek/.claude.json*)",
+      "Read(/Users/niek/Calibre Library/**)",
+      "Read(/Users/niek/Movies/**)",
+      "Read(/Users/niek/Music/**)",
+      "Read(/Users/niek/Pictures/**)",
+      "Read(/Users/niek/Downloads/**)",
+      "Read(/Users/niek/ebooks/**)",
+      "Read(/Users/niek/Library/**)",
+      "Read(/Users/niek/.Trash/**)",
+      "Read(/Users/niek/Parallels/**)",
+      "Read(/Users/niek/.cache/**)",
+      "Read(/Users/niek/.zsh_history)",
+      "Read(/Users/niek/.bash_history)",
+      "Read(/Users/niek/.viminfo)",
+      "Read(/Users/niek/.lesshst)",
+      "Read(/Users/niek/.node_repl_history)",
+      "Read(/Users/niek/.docker/**)",
+      "Read(/Users/niek/.kube/**)",
+      "Read(/Users/niek/.ollama/**)",
+      "Read(/Users/niek/.npm/**)",
+      "Read(/Users/niek/.nvm/**)",
+      "Read(/Users/niek/.bun/**)",
+      "Read(/Users/niek/.yarn/**)"
+    ],
+    "ask": [],
+    "defaultMode": "default"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bunx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "claude-mem@thedotmack": true
+  }
+}
