@@ -32,6 +32,10 @@ if status is-interactive
     # log
     abbr --add glol git log
 
+    # rebase
+    abbr --add grbc git rebase --continue
+    abbr --add grba git rebase --abort
+
     function gwip -d "Commits all open changes into a WIP commit. Undo with the gunwip function"
         git add -A
         git rm $(git ls-files --deleted) 2>/dev/null
