@@ -238,6 +238,7 @@ return {
 		event = "VimEnter",
 		opts = function()
 			local startify = require("alpha.themes.startify")
+
 			startify.section.header.val = {
 				[[    __  __                           __  __           __   _            ]],
 				[[   / / / /___ _____  ____  __  __   / / / /___ ______/ /__(_)___  ____ _]],
@@ -246,6 +247,89 @@ return {
 				[[/_/ /_/\__,_/ .___/ .___/\__, /  /_/ /_/\__,_/\___/_/|_/_/_/ /_/\__, /  ]],
 				[[           /_/   /_/    /____/                                 /____/   ]],
 			}
+
+			-- Git changes section
+			local function make_git_section()
+				local handle = io.popen("git status --porcelain 2>/dev/null")
+				if not handle then
+					return {}
+				end
+				local result = handle:read("*a")
+				handle:close()
+
+				if result == "" then
+					return {
+						{ type = "text", val = "  No uncommitted changes", opts = { hl = "Comment" } },
+					}
+				end
+
+				local entries = {}
+				local count = 0
+				for line in result:gmatch("[^\r\n]+") do
+					if count >= 10 then break end
+					local status = line:sub(1, 2):gsub(" ", "")
+					local file = line:sub(4)
+
+					-- Status label
+					local label = "[" .. status .. "]"
+
+					table.insert(entries, {
+						type = "text",
+						val = "  " .. label .. " " .. file,
+						opts = {
+							hl = status:match("M") and "DiffChange"
+								or status:match("A") and "DiffAdd"
+								or status:match("D") and "DiffDelete"
+								or status:match("%?") and "Comment"
+								or "Normal",
+						},
+					})
+					count = count + 1
+				end
+
+				return entries
+			end
+
+			startify.section.git_changes = {
+				type = "group",
+				val = function()
+					local section = {
+						{ type = "text", val = "Git Changes", opts = { hl = "SpecialComment" } },
+						{ type = "padding", val = 1 },
+					}
+					for _, entry in ipairs(make_git_section()) do
+						table.insert(section, entry)
+					end
+					return section
+				end,
+			}
+
+			-- Footer with startup time
+			startify.section.footer = {
+				type = "text",
+				val = function()
+					local stats = require("lazy").stats()
+					return "Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. string.format("%.2f", stats.startuptime) .. "ms"
+				end,
+				opts = { hl = "Comment", position = "center" },
+			}
+
+			-- Layout with git changes
+			startify.config.layout = {
+				{ type = "padding", val = 1 },
+				startify.section.header,
+				{ type = "padding", val = 2 },
+				startify.section.top_buttons,
+				{ type = "padding", val = 1 },
+				startify.section.mru_cwd,
+				{ type = "padding", val = 1 },
+				startify.section.git_changes,
+				{ type = "padding", val = 1 },
+				startify.section.bottom_buttons,
+				{ type = "padding", val = 1 },
+				startify.section.footer,
+			}
+
 			return startify.config
 		end,
 		config = function(_, opts)
