@@ -41,6 +41,7 @@
 .claude/*
 !.claude/settings.json
 !.claude/commands/
+!.claude/CLAUDE.md
 
 .DS_Store
 
