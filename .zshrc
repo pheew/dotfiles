@@ -107,7 +107,7 @@ if command_exists tmux; then
         plugins+=(tmux)
 fi
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
