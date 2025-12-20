@@ -237,7 +237,80 @@ return {
 		dependencies = { "kyazdani42/nvim-web-devicons" },
 		event = "VimEnter",
 		opts = function()
-			return require("alpha.themes.startify").config
+			local startify = require("alpha.themes.startify")
+			startify.section.header.val = {
+				[[    __  __                           __  __           __   _            ]],
+				[[   / / / /___ _____  ____  __  __   / / / /___ ______/ /__(_)___  ____ _]],
+				[[  / /_/ / __ `/ __ \/ __ \/ / / /  / /_/ / __ `/ ___/ //_/ / __ \/ __ `/]],
+				[[ / __  / /_/ / /_/ / /_/ / /_/ /  / __  / /_/ / /__/ ,< / / / / / /_/ / ]],
+				[[/_/ /_/\__,_/ .___/ .___/\__, /  /_/ /_/\__,_/\___/_/|_/_/_/ /_/\__, /  ]],
+				[[           /_/   /_/    /____/                                 /____/   ]],
+			}
+			return startify.config
+		end,
+		config = function(_, opts)
+			require("alpha").setup(opts)
+
+			local alpha_on_empty = vim.api.nvim_create_augroup("alpha_on_empty", { clear = true })
+			local startup_done = false
+
+			-- Mark startup as done after leaving Alpha for the first time
+			vim.api.nvim_create_autocmd("User", {
+				group = alpha_on_empty,
+				pattern = "AlphaReady",
+				once = true,
+				callback = function()
+					vim.api.nvim_create_autocmd("BufEnter", {
+						group = alpha_on_empty,
+						once = true,
+						callback = function()
+							if vim.bo.filetype ~= "alpha" then
+								startup_done = true
+							end
+						end,
+					})
+				end,
+			})
+
+			-- Show Alpha when entering an empty buffer (after startup)
+			vim.api.nvim_create_autocmd("BufEnter", {
+				group = alpha_on_empty,
+				callback = function()
+					if not startup_done then
+						return
+					end
+
+					local buf = vim.api.nvim_get_current_buf()
+					if vim.api.nvim_buf_get_name(buf) ~= "" or vim.bo[buf].filetype ~= "" then
+						return
+					end
+
+					-- Defer to let buffer state settle
+					vim.schedule(function()
+						-- Re-check conditions after defer
+						if not vim.api.nvim_buf_is_valid(buf) then
+							return
+						end
+						if vim.bo[buf].filetype == "alpha" then
+							return
+						end
+
+						-- Check if there are any other real buffers
+						local real_buffers = vim.tbl_filter(function(b)
+							return vim.api.nvim_buf_is_valid(b)
+								and vim.bo[b].buflisted
+								and vim.api.nvim_buf_get_name(b) ~= ""
+						end, vim.api.nvim_list_bufs())
+
+						if #real_buffers == 0 then
+							vim.cmd("Alpha")
+							if vim.api.nvim_buf_is_valid(buf) then
+								vim.api.nvim_buf_delete(buf, { force = true })
+							end
+						end
+					end)
+				end,
+			})
 		end,
 	},
 
