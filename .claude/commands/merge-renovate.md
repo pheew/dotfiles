@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(gh *), Bash(git *), Bash(az devops *), Bash(yarn install*), Bash(yarn build*), Bash(~/.claude/scripts/wait-for-ci.fish *), Bash(~/.claude/scripts/wait-for-merge.fish *)
+allowed-tools: Bash(gh *), Bash(git *), Bash(az devops *), Bash(yarn *), Bash(~/.claude/scripts/wait-for-ci.fish *), Bash(~/.claude/scripts/wait-for-merge.fish *)
 description: Triage, prepare, and merge open Renovate dependency PRs
 ---
 
