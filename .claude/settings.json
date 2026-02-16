@@ -4,7 +4,7 @@
     "allow": [
       "Bash(yarn build)",
       "Bash(yarn install)",
-      "Bash(gh pr)",
+      "Bash(gh pr *)",
       "Bash(git fetch)",
       "Bash(cat:*)",
       "WebFetch(domain:turborepo.com)",
