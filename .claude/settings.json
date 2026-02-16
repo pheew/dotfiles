@@ -19,7 +19,9 @@
       "Bash(yarn ./packages/layout test:*)",
       "Bash(yarn ./packages/search test:*)",
       "Bash(yarn:*)",
-      "Bash(yarn workspace:*)"
+      "Bash(yarn workspace:*)",
+      "Bash(~/.claude/scripts/wait-for-ci.fish *)",
+      "Bash(~/.claude/scripts/wait-for-merge.fish *)"
     ],
     "deny": [
       "Read(/Users/niek/.ssh/**)",
@@ -62,6 +64,7 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "claude-mem@thedotmack": true
+    "claude-mem@thedotmack": true,
+    "typescript-lsp@claude-plugins-official": true
   }
 }
