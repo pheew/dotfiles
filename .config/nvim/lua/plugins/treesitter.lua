@@ -5,9 +5,7 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "TSUpdateSync" },
 	dependencies = {
-		"nvim-treesitter/playground",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"lewis6991/spellsitter.nvim",
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	config = function()
@@ -35,6 +33,5 @@ return {
 			},
 		})
 
-		require("spellsitter").setup()
 	end,
 }

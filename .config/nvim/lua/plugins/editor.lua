@@ -90,7 +90,8 @@ return {
 
 	-- color highlighting
 	{
-		"norcalli/nvim-colorizer.lua",
+		"brenoprata10/nvim-highlight-colors",
+		event = "BufReadPre",
 		opts = {},
 	},
 
