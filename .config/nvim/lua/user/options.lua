@@ -37,3 +37,7 @@ vim.g.mapleader = " "
 --
 
 vim.diagnostic.config({ virtual_text = true })
+
+-- Built-in ui2 (Neovim 0.12+) — replaces noice.nvim
+require("vim._core.ui2").enable()
+vim.o.winborder = "single"
