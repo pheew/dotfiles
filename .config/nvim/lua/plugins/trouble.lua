@@ -7,10 +7,9 @@ return {
 		opts = {},
 		keys = {
 			{
-				-- Show Trouble screen
 				"<leader>t",
 				"<cmd>Trouble diagnostics toggle focus=true filter.buf=0<CR>",
-				{ desc = "Show LSP Problems" },
+				desc = "Show diagnostics (Trouble)",
 			},
 			{
 				"[q",
