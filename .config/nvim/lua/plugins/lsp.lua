@@ -117,14 +117,14 @@ return {
 						"<cmd>FzfLua lsp_definitions jump_to_single_result=true<CR>",
 						{ buf = bufnr, desc = "Go to Definition" }
 					)
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buf = bufnr })
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buf = bufnr, desc = "Hover documentation" })
 					vim.keymap.set(
 						"n",
 						"gi",
 						"<cmd>FzfLua lsp_implementations<CR>",
 						{ buf = bufnr, desc = "Go to Implementation" }
 					)
-					vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buf = bufnr })
+					vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buf = bufnr, desc = "Signature help" })
 					vim.keymap.set(
 						"n",
 						"<leader>D",

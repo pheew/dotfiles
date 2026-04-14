@@ -1,13 +1,4 @@
 return {
-	-- Adds searchable cheatsheet
-	{
-		"sudormrfbin/cheatsheet.nvim",
-		cmd = "Cheatsheet",
-		dependencies = {
-			-- { "nvim-telescope/telescope.nvim" },
-		},
-	},
-
 	-- Adds interactive help
 	{
 		"folke/which-key.nvim",
@@ -20,7 +11,19 @@ return {
 			preset = "helix",
 			spec = {
 				{ "<leader>g", group = "git" },
+				{ "<leader>l", group = "lsp" },
+				{ "<leader>o", group = "outline" },
 				{ "<leader>q", group = "session" },
+				{ "<leader>r", group = "refactor" },
+				{ "<leader>s", group = "search" },
+				{ "<leader>v", group = "vim config" },
+			},
+		},
+		keys = {
+			{
+				"<leader>?",
+				"<cmd>FzfLua keymaps<CR>",
+				desc = "Search all keymaps",
 			},
 		},
 	},
