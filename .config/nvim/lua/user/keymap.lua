@@ -14,4 +14,9 @@ vim.keymap.set("", "<leader>vr", ':luafile $MYVIMRC<cr> :echo "config reloaded"<
 
 vim.keymap.set("n", "<leader>b", "<cmd>bd<cr>", { silent = true, desc = "Delete [b]uffer" })
 
-vim.keymap.set("n", "<leader>p", "<cmd>Lazy<cr>", { silent = true, desc = "Open Lazy package manager" })
+vim.keymap.set("n", "<leader>vp", "<cmd>Lazy<cr>", { silent = true, desc = "Open Lazy package manager" })
+vim.keymap.set("n", "<leader>lm", "<cmd>Mason<cr>", { silent = true, desc = "Open Mason LSP manager" })
+vim.keymap.set("n", "<leader>ll", "<cmd>LspLog<cr>", { silent = true, desc = "Open LSP log" })
+vim.keymap.set("n", "<leader>p", function()
+	vim.notify("Use <leader>vp instead", vim.log.levels.WARN)
+end, { desc = "which_key_ignore" })

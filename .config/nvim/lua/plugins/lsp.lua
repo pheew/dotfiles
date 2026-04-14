@@ -55,7 +55,18 @@ return {
 
 			{
 				"<leader>li",
-				"<cmd>LspInfo<CR>",
+				function()
+					local clients = vim.lsp.get_clients({ bufnr = 0 })
+					if #clients == 0 then
+						vim.notify("No LSP clients attached", vim.log.levels.WARN)
+						return
+					end
+					local lines = {}
+					for _, c in ipairs(clients) do
+						table.insert(lines, string.format("%s (id=%d)", c.name, c.id))
+					end
+					vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO, { title = "LSP Clients" })
+				end,
 				desc = "LSP Server Info",
 				noremap = true,
 				silent = true,
