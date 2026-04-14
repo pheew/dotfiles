@@ -62,28 +62,16 @@ return {
 
 	-- search/replace in multiple files
 	{
-		"nvim-pack/nvim-spectre",
-		cmd = "Spectre",
-		opts = {
-			open_cmd = "noswapfile vnew",
-			replace_engine = {
-				["sed"] = {
-					cmd = "sed",
-					args = {
-						"-i",
-						"",
-						"-E",
-					},
-				},
-			},
-		},
+		"MagicDuck/grug-far.nvim",
+		cmd = "GrugFar",
+		opts = {},
 		keys = {
 			{
 				"<leader>sr",
 				function()
-					require("spectre").toggle()
+					require("grug-far").open()
 				end,
-				desc = "Replace in files (Spectre)",
+				desc = "Replace in files (GrugFar)",
 			},
 		},
 	},
