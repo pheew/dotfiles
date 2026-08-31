@@ -168,3 +168,10 @@ bindkey "^[[B" history-substring-search-down
 if [ -f ~/.secrets.sh ]; then
         source ~/.secrets.sh
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/niek/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

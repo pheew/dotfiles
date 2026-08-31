@@ -23,3 +23,10 @@ if status is-interactive
     fish_add_path ~/.local/bin
 
 end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/niek/.cache/lm-studio/bin
+# End of LM Studio CLI section
+
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
