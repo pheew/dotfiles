@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(gh *), Bash(git *), Bash(az devops *), Bash(yarn *), Bash(~/.claude/scripts/wait-for-ci.fish *), Bash(~/.claude/scripts/wait-for-merge.fish *)
+allowed-tools: Bash(gh *), Bash(git *), Bash(az devops *), Bash(yarn *), Bash(~/.claude/scripts/wait-for-ci.fish *), Bash(~/.claude/scripts/wait-for-merge.fish *), Bash(~/.claude/scripts/wait-for-renovate.fish *), Bash(~/.claude/scripts/renovate-status.fish *)
 description: Triage, prepare, and merge open Renovate dependency PRs
 ---
 
@@ -17,6 +17,12 @@ These scripts handle CI polling automatically (no manual approval per loop itera
 - **`~/.claude/scripts/wait-for-merge.fish <pr> [--timeout 300] [--interval 10]`**
   Polls `gh pr view` until PR state is MERGED. Exits 0 on merge, 1 if closed without merge, 2 on timeout.
 
+- **`~/.claude/scripts/wait-for-renovate.fish [--timeout 1200] [--interval 60] [--ignore PR_NUMBER...]`**
+  Polls for new open Renovate PRs. Exits 0 if found (prints PR numbers+titles), 2 on timeout.
+  **Important**: When existing Renovate PRs are already open, pass `--ignore <number>` for each one so the script only triggers on *new* PRs.
+
+**No sleep, no polling loops.** Do NOT use `sleep` commands or write bash loops to poll GitHub. If you need to wait for a condition, use one of the scripts above. Small `sleep N; gh pr view` idioms are also forbidden — just run the check directly.
+
 ## Phase 1: Inventory & Prioritize
 
 1. Read the **Renovate Dependency Dashboard** issue to get the full picture (open PRs, rate-limited, blocked, deprecations, repo problems):
@@ -24,9 +30,9 @@ These scripts handle CI polling automatically (no manual approval per loop itera
    - Read it: `gh issue view <number> --json body`
    - Summarize any relevant context from the dashboard (problems, blocked PRs, deprecations)
 
-2. List all open Renovate PRs with status details:
-   - `gh pr list --search "author:app/renovate-bot-service" --state open --json number,title,headRefName,additions,deletions,labels`
-   - For each PR, get CI status: `gh pr checks <number> --json name,state,link`
+2. List all open Renovate PRs with full status in one call:
+   - `~/.claude/scripts/renovate-status.fish`
+   (This returns CI state, review decision, auto-merge, merge-queue, and labels for all PRs via a single GraphQL call — do NOT loop `gh pr checks` per PR)
 
 3. Classify each PR:
    - **Security**: title contains `[security]`
@@ -40,6 +46,21 @@ These scripts handle CI polling automatically (no manual approval per loop itera
 
    | # | PR | Update | Type | CI | Size |
    |---|-----|--------|------|----|------|
+
+### If no open PRs exist
+
+1. Wait up to 20 minutes for Renovate to open new PRs (pass `--ignore` for each already-open Renovate PR):
+   `~/.claude/scripts/wait-for-renovate.fish --timeout 1200 --interval 60 --ignore <existing_pr>...`
+2. If new PRs appear (exit 0), loop back to step 2 above to list and classify them.
+3. If the wait times out (exit 2), fall back to the **Dependency Dashboard** issue body (already fetched in step 1). Pick a rate-limited PR to force-create by checking its checkbox via a GitHub issue body edit. Use these priority rules:
+   - **Security** updates first
+   - **Patch** updates next (low-risk, high-value)
+   - **Minor** updates after that
+   - **Major** updates last (highest risk)
+   - Within the same tier, prefer updates that affect fewer packages (smaller blast radius)
+4. After checking the checkbox, wait for Renovate to create the PR (pass `--ignore` for each already-open Renovate PR):
+   `~/.claude/scripts/wait-for-renovate.fish --timeout 600 --interval 30 --ignore <existing_pr>...`
+5. Once the PR appears, loop back to step 2 to list and classify it.
 
 ## Phase 2: Triage
 
@@ -106,7 +127,8 @@ After pushing fixes, wait for CI: `~/.claude/scripts/wait-for-ci.fish <number>`
 
 ## Phase 4: Merge
 
-1. Merge the PR: `gh pr merge --squash <number>`
+1. Enqueue the PR via GitHub's merge queue: `gh pr merge --squash --auto <number>`
+   **Critical**: do NOT use `--admin` — it bypasses branch protections and review requirements.
 2. Wait until merged: `~/.claude/scripts/wait-for-merge.fish <number>`
 3. Confirm the merge to the user
 

@@ -19,6 +19,9 @@
 #   1  One or more checks failed (names + links printed)
 #   2  Timeout reached with checks still pending
 #   3  Usage error or gh CLI failure
+#   4  PR has merge conflicts (checks won't run)
+
+set -x CLICOLOR_FORCE 0
 
 argparse --name=wait-for-ci 'timeout=' 'interval=' -- $argv
 or begin
@@ -41,6 +44,13 @@ set -l pending_states PENDING QUEUED IN_PROGRESS REQUESTED WAITING
 set -l failure_states FAILURE ERROR CANCELLED STARTUP_FAILURE TIMED_OUT ACTION_REQUIRED STALE
 
 while true
+    # Check for merge conflicts first — CI won't run if PR is conflicting
+    set -l mergeable (gh pr view $pr --json mergeable --jq '.mergeable' 2>/dev/null)
+    if test "$mergeable" = CONFLICTING
+        echo "CONFLICT — PR #$pr has merge conflicts. CI will not run until conflicts are resolved."
+        exit 4
+    end
+
     # Fetch current check status
     set -l checks_json (gh pr checks $pr --json name,state,link 2>&1)
     if test $status -ne 0

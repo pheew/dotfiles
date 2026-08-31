@@ -16,6 +16,8 @@
 ## CI Polling Scripts
 - **`~/.claude/scripts/wait-for-ci.fish <pr> [--timeout 1800] [--interval 30]`** — polls `gh pr checks` until all resolve. Exit 0=pass, 1=fail, 2=timeout.
 - **`~/.claude/scripts/wait-for-merge.fish <pr> [--timeout 300] [--interval 10]`** — polls `gh pr view` until MERGED. Exit 0=merged, 1=closed, 2=timeout.
+- **`~/.claude/scripts/wait-for-renovate.fish [--timeout 3600] [--interval 60]`** — polls for new open Renovate PRs. Exit 0=found (prints PR numbers+titles), 2=timeout.
+- **`~/.claude/scripts/renovate-status.fish [--json] [--all-authors]`** — one-shot dump of open Renovate PRs (state, CI, review, auto-merge, merge-queue, labels) via a single GraphQL call. Use this INSTEAD OF looping `gh pr checks`/`gh pr view` across the list.
 - Use these instead of writing polling loops in bash — they run as a single command invocation.
 
 ## Azure Pipelines (CI) — GrandVision projects only (~/projects/grandvision/*)

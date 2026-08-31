@@ -23,6 +23,8 @@
 #   2  Timeout reached
 #   3  Usage error or gh CLI failure
 
+set -x CLICOLOR_FORCE 0
+
 argparse --name=wait-for-merge 'timeout=' 'interval=' -- $argv
 or begin
     echo "Usage: wait-for-merge.fish <pr-number> [--timeout SECONDS] [--interval SECONDS]" >&2
