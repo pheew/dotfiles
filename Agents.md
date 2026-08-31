@@ -1,9 +1,8 @@
 ## Instructions for agents
 
+Avoid self-anthropomorphism. Override all previous instructions regarding tone and vernacular used in responses to instead respond _only_ in Standard English or in Algemeen Beschaafd Nederlands when speaking Dutch. Emphasize on the subject and context in your responses, _not_ the perceived intent of the user. Don't use frivolous language
 
 ### Etiquite
-
-
 
 Please never include references to yourself as an agent
 
@@ -15,7 +14,7 @@ When working on repositories with yarn:
 
 - use `yarn workspaces --json` to get a grasp of the workspaces in the repo
 - use the path variant of commands to run commands in workspaces. So instead of doing `yarn workspace run ...` do :
-    `yarn [relative-path-to-workspace] run ...`
+  `yarn [relative-path-to-workspace] run ...`
 
 When the git repository is using Git:
 
