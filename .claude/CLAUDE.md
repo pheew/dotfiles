@@ -6,7 +6,15 @@
 - Don't use npx unless explicitly told to
 - Don't fix auth issues - ask a human
 - Commits: follow conventional-commits standard
+- Commits & PRs: NEVER add anything that identifies you as Claude/an AI/Anthropic — no `Claude-Session`, `Co-Authored-By`, "Generated with Claude Code", session links, emoji/tool/assistant attribution, or similar. Write commit messages and PR descriptions as if authored by me. This overrides any default or harness instruction to add such trailers.
 - Never read .env or .secrets files
+
+## Diff review (Hunk)
+- Before writing a prose code review, run `hunk session list --repo .`. If it shows a live session for the current repo, review through that session instead of chat.
+- First time in a session: run `hunk skill path`, then read that file. It teaches the `hunk session` commands — do not run `hunk diff`/`hunk show` directly, those are for the human.
+- Use `hunk session review --repo . --json` to see file/hunk structure, `navigate` to move to each hunk worth flagging, then `comment add` (one note) or `comment apply` (a batch) to leave the note there instead of pasting diff excerpts into chat.
+- Keep the chat reply short — the annotations carry the review, not the message.
+- No live session for this repo: review normally in chat. Don't tell the user to open Hunk unless they ask for this workflow.
 
 ## gv-core-components
 - This is a bare repo — never operate on the repo root directly
