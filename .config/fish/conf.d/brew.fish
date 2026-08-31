@@ -1,16 +1,16 @@
 if status is-interactive
 
     if test "$(uname)" = Darwin
-        set -l brew_bin "/usr/local/homebrew/bin/brew"
-        if test "$(arch)" = "arm64"
-            set brew_bin "/opt/homebrew/bin/brew"
+        set -l brew_bin /usr/local/homebrew/bin/brew
+        if test "$(arch)" = arm64
+            set brew_bin /opt/homebrew/bin/brew
         end
 
         if test -e "$brew_bin"
             # set -l brew_prefix $($brew_bin config | awk -F ': ' '/HOMEBREW_PREFIX/ {print $2}')
             set -gx HOMEBREW_NO_AUTO_UPDATE yes
 
-            fish_add_path "$brew_prefix/bin" "$brew_prefix/sbin"
+            fish_add_path --append "$brew_prefix/bin" "$brew_prefix/sbin"
             /opt/homebrew/bin/brew shellenv | source
 
             alias bubo "brew update && brew outdated"
