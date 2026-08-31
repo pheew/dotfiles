@@ -6,7 +6,7 @@ return {
 		dependencies = { "mason.nvim" },
 		lazy = true,
 		cmd = { "ConformInfo", "Format" },
-		config = function(opts)
+		config = function(_, opts)
 			-- https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#format-command
 			vim.api.nvim_create_user_command("Format", function(args)
 				local range = nil

@@ -17,6 +17,7 @@ return {
 			},
 		},
 	},
+
 	-- Useful status updates for LSP
 	-- {
 	-- 	"j-hui/fidget.nvim",
@@ -32,6 +33,7 @@ return {
 	-- 		},
 	-- 	},
 	-- },
+
 	{ "williamboman/mason.nvim", config = true, cmd = "Mason" },
 	{
 		"neovim/nvim-lspconfig",
@@ -125,7 +127,7 @@ return {
 					vim.keymap.set(
 						"n",
 						"gd",
-						"<cmd>FzfLua lsp_definitions jump_to_single_result=true<CR>",
+						"<cmd>FzfLua lsp_definitions jump1=true<CR>",
 						{ buf = bufnr, desc = "Go to Definition" }
 					)
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buf = bufnr, desc = "Hover documentation" })
