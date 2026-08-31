@@ -48,6 +48,12 @@
   ```
 - Do NOT use `az devops configure` — pass `--org` explicitly
 
+## Jira (jira-cli) — GrandVision projects only
+- `jira` (jira-cli) is installed & authed as niek.bruins@grandvision.com against `https://luxotticaretail.atlassian.net`, default project `GVFE` (GVFE Board, scrum)
+- Use it to read/manage issues instead of asking: `jira issue view GVFE-XXX`, `jira issue list -a$(jira me) --plain --no-headers`, `jira sprint list`
+- Statuses are localized Dutch: Nog doen, Actief, Gereed, Backlog, Capture Requirements, Gesloten
+- Config at `~/.config/.jira/.config.yml` holds the API token — never read/print it
+
 ## Communication
 - Be direct, skip validation phrases
 - Challenge my reasoning and assumptions
