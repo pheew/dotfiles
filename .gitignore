@@ -43,6 +43,9 @@
 !.claude/commands/
 !.claude/scripts/
 !.claude/CLAUDE.md
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/herdr/
 
 .DS_Store
 
