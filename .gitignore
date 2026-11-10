@@ -34,6 +34,20 @@
 .config/fish/fish_variables
 .config/fish/conf.d/secrets.fish
 
+# herdr desktop app: own keys, layout and mods; not runtime state or generated types
+!.config/herdr-app
+.config/herdr-app/*
+!.config/herdr-app/keys.json
+!.config/herdr-app/layouts/
+.config/herdr-app/layouts/*
+!.config/herdr-app/layouts/main-jobs.json
+!.config/herdr-app/mods/
+.config/herdr-app/mods/*
+!.config/herdr-app/mods/agents-plus/
+!.config/herdr-app/mods/my-new-menu/
+!.config/herdr-app/mods/my-tabs/
+.config/herdr-app/mods/**/gpui-kit.d.ts
+
 !.ideavimrc
 
 # claude
@@ -51,4 +65,4 @@
 
 **/secrets.*
 
-!Agents.md
+!/Agents.md
