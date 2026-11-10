@@ -1,0 +1,5 @@
+{
+  "place": "none",
+  "title": "hunk",
+  "overlay": { "kind": "popup", "at": "top", "offset": 64, "width": 480, "height": 300 }
+}

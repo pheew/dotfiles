@@ -45,6 +45,7 @@
 !.config/herdr-app/mods/
 .config/herdr-app/mods/*
 !.config/herdr-app/mods/agents-plus/
+!.config/herdr-app/mods/hunk/
 !.config/herdr-app/mods/my-new-menu/
 !.config/herdr-app/mods/my-tabs/
 .config/herdr-app/mods/**/gpui-kit.d.ts

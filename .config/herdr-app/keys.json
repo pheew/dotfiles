@@ -59,7 +59,8 @@
     "ctrl-8": "space.select:8",
     "ctrl-9": "space.select:9",
     "ctrl-a": "mod.open:tmux-prefix",
-    "cmd-shift-b": "mod.open:shephrd"
+    "cmd-shift-b": "mod.open:shephrd",
+    "cmd-shift-h": "mod.open:hunk"
   },
   "terminal": {
     "cmd-f": "terminal.search",
