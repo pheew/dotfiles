@@ -38,6 +38,7 @@
 !.config/herdr-app
 .config/herdr-app/*
 !.config/herdr-app/keys.json
+!.config/herdr-app/settings.json
 !.config/herdr-app/layouts/
 .config/herdr-app/layouts/*
 !.config/herdr-app/layouts/main-jobs.json
