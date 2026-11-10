@@ -7,6 +7,21 @@ import { agents, closeOverlay, exec, focused, hc, notify, panes, props, run, set
 //
 // The popup stays open while an action runs: closing it cancels this view's tasks.
 
+/** @typedef {import("gpui-kit").AsyncContext} AsyncContext */
+/** @typedef {import("gpui-kit").Context} Context */
+/** @typedef {import("gpui-kit").KeyEvent} KeyEvent */
+/** @typedef {import("gpui-kit").Color} Color */
+/** @typedef {import("herdr").AgentInfo} AgentInfo */
+/** @typedef {NonNullable<ReturnType<typeof focused>>} Focus */
+/** @typedef {"auto" | "working" | "staged" | "branch" | "commit"} Mode */
+/** @typedef {[key: string, label: string, id: string]} Action */
+/** @typedef {{ pane: string, terminal: string | null, agent: string | null, mode: Mode }} Review */
+/** @typedef {{ mode: Mode, args: string[], warning: string | null }} Target */
+/**
+ * A note from `hunk session comment list --json`.
+ * @typedef {{ noteId: string, filePath: string, body: string, newRange?: [number, number], oldRange?: [number, number] }} HunkComment
+ */
+
 const WATCH = false; // true: `hunk diff --watch` reloads the review when files change
 const CLEAR_AFTER_SEND = true; // remove sent comments from hunk
 const SENT_CAP = 500; // sent comment ids kept per repo, to block a double send
@@ -16,6 +31,7 @@ const PROMPT = `Human-authored inline review comments on your changes in {worktr
 
 Address each comment and verify the resulting changes. If a comment is unclear or requires a decision, ask a focused clarification question and continue with any unaffected comments. Then summarize what you changed and explain anything you did not implement.`;
 
+/** @type {Action[]} */
 const ACTIONS = [
   ["h", "Review changes (branch if ahead of base, else working tree)", "auto"],
   ["w", "Review the working tree", "working"],
@@ -28,20 +44,34 @@ const ACTIONS = [
   ["x", "Close the review pane", "close"],
 ];
 
-const REVIEWS = "hunk.reviews"; // { [repo]: { pane, terminal, agent, mode } }
+const REVIEWS = "hunk.reviews"; // { [repo]: Review }
 const SENT = "hunk.sent"; // { [repo]: noteId[] }
 
 class Failure extends Error {}
 
+/**
+ * @param {AsyncContext} cx
+ * @param {number} ms
+ * @returns {Promise<void>}
+ */
 function sleep(cx, ms) {
   return new Promise((resolve) => cx.timer.after(ms, () => resolve()));
 }
 
+/**
+ * @param {string} cwd
+ * @param {string[]} args
+ * @returns {Promise<string | null>} trimmed stdout, or null when git fails
+ */
 async function git(cwd, args) {
   const r = await exec("git", ["-C", cwd, ...args]);
   return r.code === 0 ? r.stdout.trim() : null;
 }
 
+/**
+ * @param {string[]} args
+ * @returns {Promise<any>} the parsed `--json` output
+ */
 async function hunkJson(args) {
   const r = await exec("hunk", [...args, "--json"]);
   if (r.code !== 0) {
@@ -52,10 +82,15 @@ async function hunkJson(args) {
   return JSON.parse(r.stdout || "{}");
 }
 
-// The base for a branch review: the upstream (unless it is this branch's own remote
-// branch), then origin/HEAD, then main, master or trunk.
+/**
+ * The base for a branch review: the upstream (unless it is this branch's own remote
+ * branch), then origin/HEAD, then main, master or trunk.
+ * @param {string} repo
+ * @returns {Promise<string | null>}
+ */
 async function resolveBase(repo) {
   const branch = await git(repo, ["branch", "--show-current"]);
+  /** @param {string | null} ref */
   const usable = (ref) => ref && !(branch && ref.endsWith(`/${branch}`));
   const upstream = await git(repo, ["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}"]);
   if (usable(upstream)) return upstream;
@@ -67,12 +102,21 @@ async function resolveBase(repo) {
   return null;
 }
 
+/**
+ * @param {string} repo
+ * @param {string} base
+ */
 async function aheadOf(repo, base) {
   const n = await git(repo, ["rev-list", "--count", `${base}..HEAD`]);
   return Number.parseInt(n ?? "0", 10) > 0;
 }
 
-// hunk arguments for a mode; "auto" and "branch" resolve here.
+/**
+ * hunk arguments for a mode; "auto" and "branch" resolve here.
+ * @param {string} repo
+ * @param {Mode} mode
+ * @returns {Promise<Target>}
+ */
 async function hunkArgs(repo, mode) {
   let warning = null;
   if (mode === "auto" || mode === "branch") {
@@ -88,22 +132,36 @@ async function hunkArgs(repo, mode) {
   return { mode: "working", args: ["diff", ...(WATCH ? ["--watch"] : [])], warning };
 }
 
+/** @returns {Record<string, Review>} */
 function reviews() {
-  return shared(REVIEWS) ?? {};
+  return /** @type {Record<string, Review> | undefined} */ (shared(REVIEWS)) ?? {};
 }
 
-// The review pane for a repo, when it is still open.
+/**
+ * The review pane for a repo, when it is still open.
+ * @param {string} repo
+ * @returns {Review | null}
+ */
 function reviewPane(repo) {
   const entry = reviews()[repo];
   return entry && panes().some((p) => p.pane === entry.pane) ? entry : null;
 }
 
+/**
+ * @param {string | null} cwd
+ * @param {string} repo
+ */
 function inside(cwd, repo) {
   return cwd === repo || (cwd ?? "").startsWith(`${repo}/`);
 }
 
-// The agent that gets the comments: the focused one, else the one the review was opened
-// from, else the only agent in this tab working in the repo.
+/**
+ * The agent that gets the comments: the focused one, else the one the review was opened
+ * from, else the only agent in this tab working in the repo.
+ * @param {string} repo
+ * @param {Focus} f
+ * @returns {AgentInfo}
+ */
 function agentFor(repo, f) {
   const live = agents();
   const review = reviews()[repo];
@@ -117,19 +175,30 @@ function agentFor(repo, f) {
   throw new Failure(candidates.length ? "More than one agent works in this repo; focus the one to send to." : "No agent found for this repo; focus the agent and try again.");
 }
 
+/**
+ * @param {HunkComment[]} comments
+ * @param {string} repo
+ * @param {string} agent
+ */
 function formatReview(comments, repo, agent) {
   const lines = comments.map((c) => {
     const at = c.newRange?.[0] ?? c.oldRange?.[0];
     return `- ${c.filePath}${at !== undefined ? `:${at}` : ""} — ${c.body}`;
   });
+  /** @type {Record<string, string>} */
   const values = { "{worktree}": repo, "{comments}": lines.join("\n"), "{count}": String(comments.length), "{agent}": agent };
   return PROMPT.replace(/\{worktree\}|\{comments\}|\{count\}|\{agent\}/g, (m) => values[m]);
 }
 
 export default class Hunk extends View {
+  /**
+   * @param {unknown} _props
+   * @param {AsyncContext} cx
+   */
   init(_props, cx) {
     this.handle = cx.focus_handle();
     this.handle.focus();
+    /** @type {string | null} the running action's label */
     this.busy = null;
   }
 
@@ -137,6 +206,10 @@ export default class Hunk extends View {
     closeOverlay(props().overlay);
   }
 
+  /**
+   * @param {KeyEvent} e
+   * @param {Context} cx
+   */
   key(e, cx) {
     cx.stop_propagation();
     if (e.key === "escape") return this.dismiss();
@@ -149,6 +222,10 @@ export default class Hunk extends View {
     this.start(action, cx);
   }
 
+  /**
+   * @param {Action} action
+   * @param {Context} cx
+   */
   start([, label, id], cx) {
     this.busy = label;
     cx.notify();
@@ -156,7 +233,7 @@ export default class Hunk extends View {
       try {
         await this.act(id, cx);
       } catch (err) {
-        notify({ title: "hunk", body: err instanceof Failure ? err.message : String(err?.message ?? err), level: "error" });
+        notify({ title: "hunk", body: err instanceof Error ? err.message : String(err), level: "error" });
       }
       this.dismiss();
     });
@@ -171,6 +248,10 @@ export default class Hunk extends View {
     return { f, repo };
   }
 
+  /**
+   * @param {string} id an Action id
+   * @param {AsyncContext} cx
+   */
   async act(id, cx) {
     const { f, repo } = await this.repo();
     if (id === "send") return this.send(repo, f);
@@ -184,9 +265,15 @@ export default class Hunk extends View {
       run("pane.close", { pane: entry.pane });
       return;
     }
-    return this.review(repo, f, id, cx);
+    return this.review(repo, f, /** @type {Mode} */ (id), cx);
   }
 
+  /**
+   * @param {string} repo
+   * @param {Focus} f
+   * @param {Mode} mode
+   * @param {AsyncContext} cx
+   */
   async review(repo, f, mode, cx) {
     const target = await hunkArgs(repo, mode);
     if (target.warning) notify({ title: "hunk", body: target.warning, level: "warning" });
@@ -215,10 +302,15 @@ export default class Hunk extends View {
     throw new Failure("hunk started, but its pane did not appear; send and close may not find it.");
   }
 
+  /**
+   * @param {string} repo
+   * @param {Focus} f
+   */
   async send(repo, f) {
     const listed = await hunkJson(["session", "comment", "list", "--repo", repo, "--type", "user"]);
-    const comments = Array.isArray(listed.comments) ? listed.comments.filter((c) => c?.noteId && c.filePath) : [];
-    const sentAll = shared(SENT) ?? {};
+    /** @type {HunkComment[]} */
+    const comments = Array.isArray(listed.comments) ? listed.comments.filter((/** @type {any} */ c) => c?.noteId && c.filePath) : [];
+    const sentAll = /** @type {Record<string, string[]> | undefined} */ (shared(SENT)) ?? {};
     const sent = new Set(sentAll[repo] ?? []);
     const unsent = comments.filter((c) => !sent.has(c.noteId));
     if (unsent.length === 0) {
@@ -246,7 +338,7 @@ export default class Hunk extends View {
   }
 
   render() {
-    const t = theme();
+    const t = /** @type {Record<string, Color>} */ (theme());
     return v_flex().id("hunk").track_focus(this.handle)
       .on_key_down((e, cx) => this.key(e, cx))
       .p(14).gap(8).bg(t.popover).text_color(t.foreground).text_size(12)
